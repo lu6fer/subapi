@@ -42,8 +42,7 @@ class User extends Authenticatable
     ];
 
 
-	public function sluggify($user) {
-		Log::info('Sluggify method for : '.$user->name);
-		$user->slug = Str::slug($user->first_name.' '.$user->name);
-	}
+	public function subscriptions() {
+        return $this->hasMany('App\Subscription');
+    }
 }
