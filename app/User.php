@@ -65,4 +65,20 @@ class User extends Authenticatable
 	public function subscriptions() {
         return $this->hasMany('App\Subscription');
     }
+
+    /**
+     * Event(owner) relationship
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function organizer() {
+        return $this->hasMany('App\Event');
+    }
+
+    /**
+     * Event(participant) relationship
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function booking() {
+        return $this->belongsToMany('App\Event');
+    }
 }

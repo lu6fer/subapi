@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Event;
 
 class EventController extends Controller
 {
@@ -13,17 +15,23 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
+        $events = Event::where('date', '>', Carbon::now());
+        return response()->json($events);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Display the specified resource.
      *
+     * @param  string $slug
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function show($slug)
     {
-        //
+        $event = Event::where('slug', $slug)
+            ->with('owner')
+            ->with('participants')
+            ->first();
+        return response()->json($event);
     }
 
     /**
@@ -34,51 +42,34 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        $event = Event::create($request->all());
+        return response()->json($event);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  string $slug
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
-        //
+        $event = Event::where('slug', $slug)->first();
+        $event->fill($request->all());
+        return response()->json($event);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  string $slug
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        //
+        $event = Event::where('slug', $slug)->first();
+        $event->delete();
+        return response()->json('event deleted');
     }
 }

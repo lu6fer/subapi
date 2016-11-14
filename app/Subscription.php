@@ -11,6 +11,6 @@ class Subscription extends Model
     }
 
     public function subscription_plan() {
-        return $this->hasOne('App\SubscriptionPlans');
+        return $this->hasOne('App\SubscriptionPlan');
     }
 }

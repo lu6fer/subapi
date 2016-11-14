@@ -71,4 +71,17 @@ Route::group(['prefix' => '/v1'], function(){
 	Route::post('users/{slug}/boat', 'BoatLevelController@store');
 	Route::put('users/{slug}/boat/{id}', 'BoatLevelController@update');
 	Route::delete('users/{slug}/boat/{id}', 'BoatLevelController@destroy');
+    // Dive level
+    Route::get('users/{slug}/dive', 'DiveLevelController@show');
+    Route::post('users/{slug}/dive', 'DiveLevelController@store');
+    Route::put('users/{slug}/dive/{id}', 'DiveLevelController@update');
+    Route::delete('users/{slug}/dive/{id}', 'DiveLevelController@destroy');
+    /**
+     * Events
+     */
+    Route::get('events', 'EventController@index');
+    Route::get('events/{slug}', 'EventController@show');
+    Route::post('events', 'EventController@store');
+    Route::put('events/{slug}', 'EventController@update');
+    Route::delete('events/{slug}', 'EventController@destroy');
 });
