@@ -41,7 +41,27 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+	/**
+	 * Article relationship
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+	public function articles() {
+		return $this->hasMany('App\Article');
+	}
 
+	/**
+	 * BoatLevel relationship
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+	public function boat() {
+		return $this->hasMany('App\BoatLevel');
+	}
+
+
+	/**
+	 * Subscription relationship
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
 	public function subscriptions() {
         return $this->hasMany('App\Subscription');
     }

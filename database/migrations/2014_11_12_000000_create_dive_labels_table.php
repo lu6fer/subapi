@@ -15,6 +15,7 @@ class CreateDiveLabelsTable extends Migration
     {
         Schema::create('dive_labels', function (Blueprint $table) {
             $table->increments('id');
+	        $table->string('slug')->unique();
             $table->string('name');
             $table->string('description')->nullable();
             $table->timestamps();

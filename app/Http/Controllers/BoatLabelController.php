@@ -2,83 +2,70 @@
 
 namespace App\Http\Controllers;
 
+use App\BoatLabel;
 use Illuminate\Http\Request;
 
 class BoatLabelController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function index()
+	{
+		$boatLabels = BoatLabel::all();
+		return response()->json($boatLabels);
+	}
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function show($slug)
+	{
+		$boatLabel = BoatLabel::where('slug', $slug)->first();
+		return response()->json($boatLabel);
+	}
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @return \Illuminate\Http\Response
+	 */
+	public function store(Request $request)
+	{
+		$boatLabel = BoatLabel::create($request->all());
+		return response()->json($boatLabel);
+	}
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @param  string $slug
+	 * @return \Illuminate\Http\Response
+	 */
+	public function update(Request $request, $slug)
+	{
+		$boatLabel = BoatLabel::where('slug', $slug)->first();
+		$boatLabel->fill($request->all());
+		return response()->json($boatLabel);
+	}
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  string $slug
+	 * @return \Illuminate\Http\Response
+	 */
+	public function destroy($slug)
+	{
+		$boatLabel = BoatLabel::where('slug', $slug)->first();
+		$boatLabel->delete();
+		return response()->json('boatLabel deleted');
+	}
 }

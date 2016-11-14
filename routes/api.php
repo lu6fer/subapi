@@ -18,9 +18,57 @@ use Illuminate\Http\Request;
 })->middleware('auth:api');*/
 
 Route::group(['prefix' => '/v1'], function(){
+	/*
+	|--------------------------------------------------------------------------
+	| Labels
+	|--------------------------------------------------------------------------
+	| Get labels
+	|
+	*/
+	Route::group(['prefix' => 'labels'], function () {
+		/**
+		 * BoatLabel
+		 */
+		Route::get('boat', 'BoatLabelController@index');
+		Route::get('boat/{slug}', 'BoatLabelController@show');
+		Route::post('boat', 'BoatLabelController@store');
+		Route::put('boat/{slug}', 'BoatLabelController@update');
+		Route::delete('boat/{slug}', 'BoatLabelController@destroy');
+		/**
+		 * DiveLabel
+		 */
+		Route::get('dive', 'DiveLabelController@index');
+		Route::get('dive/{slug}', 'DiveLabelController@show');
+		Route::post('dive', 'DiveLabelController@store');
+		Route::put('dive/{slug}', 'DiveLabelController@update');
+		Route::delete('dive/{slug}', 'DiveLabelController@destroy');
+	});
+
+
+	/**
+	 * Articles
+	 */
+	Route::get('articles', 'ArticleController@index');
+	Route::get('articles/{slug}', 'ArticleController@show');
+	Route::post('articles', 'ArticleController@store');
+	Route::put('articles/{slug}', 'ArticleController@update');
+	Route::delete('articles/{slug}', 'ArticleController@destroy');
+	// Comments
+	Route::get('articles/{slug}/comments', 'CommentController@show');
+	Route::post('articles/{slug/comments', 'CommentController@store');
+	Route::put('articles/{slug}/comments/{id}', 'CommentController@update');
+	Route::delete('articles/{slug}/comments/{id}', 'CommentController@destroy');
+	/**
+	 * Users
+	 */
 	Route::get('users', 'UserController@index');
 	Route::get('users/{slug}', 'UserController@show');
 	Route::post('users', 'UserController@store');
 	Route::put('users/{slug}', 'UserController@update');
 	Route::delete('users/{slug}', 'UserController@destroy');
+	// Boat level
+	Route::get('users/{slug}/boat', 'BoatLevelController@show');
+	Route::post('users/{slug}/boat', 'BoatLevelController@store');
+	Route::put('users/{slug}/boat/{id}', 'BoatLevelController@update');
+	Route::delete('users/{slug}/boat/{id}', 'BoatLevelController@destroy');
 });

@@ -2,73 +2,53 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
+use App\Comment;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  string  $slug
+	 * @return \Illuminate\Http\Response
+	 */
+	public function show($slug)
+	{
+		$article = Article::where('slug', $slug)->first();
+		return response()->json($article->comments);
+	}
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $slug)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+	    $article = Article::where('slug', $slug);
+	    $comment = $article->comments()->create($request->all());
+	    return response()->json($comment);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  string $slug
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug, $id)
     {
-        //
+	    $article = Article::where('slug', $slug);
+	    $comment = Comment::find($id);
+	    $comment->fill($request->all());
+	    $article->boat()->save($comment);
+	    return response()->json($comment);
     }
 
     /**
@@ -79,6 +59,8 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        //
+	    $comment = Comment::find($id);
+	    $comment->delete();
+	    return response()->json('comment deleted');
     }
 }
