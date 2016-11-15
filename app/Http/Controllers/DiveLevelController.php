@@ -17,7 +17,7 @@ class DiveLevelController extends Controller
     public function show($slug)
     {
         $user = User::where('slug', $slug)->first();
-        return response()->json($user->boat);
+        return response()->json($user->dive);
     }
 
     /**
@@ -30,7 +30,7 @@ class DiveLevelController extends Controller
     public function store(Request $request, $slug)
     {
         $user = User::where('slug', $slug);
-        $diveLevel = $user->boat()->create($request->all());
+        $diveLevel = $user->dive()->create($request->all());
         return response()->json($diveLevel);
     }
 
@@ -47,7 +47,7 @@ class DiveLevelController extends Controller
         $user = User::where('slug', $slug);
         $diveLevel = DiveLevel::find($id);
         $diveLevel->fill($request->all());
-        $user->boat()->save($diveLevel);
+        $user->dive()->save($diveLevel);
         return response()->json($diveLevel);
     }
 

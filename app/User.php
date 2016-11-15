@@ -2,8 +2,6 @@
 
 namespace App;
 
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -41,6 +39,10 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+	/*----------------------------------------
+	 | Model methods
+	 */
+
 	/**
 	 * Article relationship
 	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -57,6 +59,37 @@ class User extends Authenticatable
 		return $this->hasMany('App\BoatLevel');
 	}
 
+	/**
+	 * Event(participant) relationship
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 */
+	public function booking() {
+		return $this->belongsToMany('App\Event');
+	}
+
+	/**
+	 * DiveLevel relationship
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+	public function dive() {
+		return $this->hasMany('App\DiveLevel');
+	}
+
+	/**
+	 * Membership relationship
+	 * @return \Illuminate\Database\Eloquent\Relations\HasOne
+	 */
+	public function membership() {
+		return $this->hasOne('App\Membership');
+	}
+
+	/**
+	 * Event(owner) relationship
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+	public function organizer() {
+		return $this->hasMany('App\Event');
+	}
 
 	/**
 	 * Subscription relationship
@@ -64,21 +97,5 @@ class User extends Authenticatable
 	 */
 	public function subscriptions() {
         return $this->hasMany('App\Subscription');
-    }
-
-    /**
-     * Event(owner) relationship
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function organizer() {
-        return $this->hasMany('App\Event');
-    }
-
-    /**
-     * Event(participant) relationship
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function booking() {
-        return $this->belongsToMany('App\Event');
     }
 }

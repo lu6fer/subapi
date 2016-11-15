@@ -15,7 +15,9 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::where('date', '>', Carbon::now());
+        $events = Event::where('date', '>', Carbon::now())
+	        ->with('owner')
+	        ->get();
         return response()->json($events);
     }
 

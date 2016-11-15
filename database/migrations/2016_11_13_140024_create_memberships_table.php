@@ -18,10 +18,11 @@ class CreateMembershipsTable extends Migration
             $table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('licence');
-            $table->string('asac');
+	        $table->integer('asac_id')->unsigned()->index();
+	        $table->foreign('asac_id')->references('id')->on('asac_labels')->onDelete('cascade');
             $table->date('date');
-            $table->integer('origin')->unsigned()->index();
-            $table->foreign('origin')->references('id')->on('membership_origins')->onDelete('cascade');
+            $table->integer('origin_id')->unsigned()->index();
+            $table->foreign('origin_id')->references('id')->on('membership_origins')->onDelete('cascade');
             $table->boolean('magazine')->nullable();
             $table->boolean('tank')->nullable();
             $table->boolean('regulator')->nullable();
@@ -30,7 +31,8 @@ class CreateMembershipsTable extends Migration
             $table->boolean('free_pool')->nullable();
             $table->boolean('pool_trestel')->nullable();
             $table->boolean('local_access')->nullable();
-            $table->string('insurance');
+	        $table->integer('insurance_id')->unsigned()->index();
+	        $table->foreign('insurance_id')->references('id')->on('insurance_labels')->onDelete('cascade');
             $table->timestamps();
         });
     }

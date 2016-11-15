@@ -25,6 +25,14 @@ class Article extends Model
 	];
 
 	/**
+	 * The attributes that are date format
+	 * @var array
+	 */
+	protected $dates = [
+		'created_at', 'updated_at'
+	];
+
+	/**
 	 * User relationship
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
 	 */

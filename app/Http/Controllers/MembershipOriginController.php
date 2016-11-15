@@ -2,83 +2,70 @@
 
 namespace App\Http\Controllers;
 
+use App\MembershipOrigin;
 use Illuminate\Http\Request;
 
 class MembershipOriginController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function index()
+	{
+		$membershipOrigins = MembershipOrigin::all();
+		return response()->json($membershipOrigins);
+	}
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function show($slug)
+	{
+		$membershipOrigin = MembershipOrigin::where('slug', $slug)->first();
+		return response()->json($membershipOrigin);
+	}
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @return \Illuminate\Http\Response
+	 */
+	public function store(Request $request)
+	{
+		$membershipOrigin = MembershipOrigin::create($request->all());
+		return response()->json($membershipOrigin);
+	}
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @param  string $slug
+	 * @return \Illuminate\Http\Response
+	 */
+	public function update(Request $request, $slug)
+	{
+		$membershipOrigin = MembershipOrigin::where('slug', $slug)->first();
+		$membershipOrigin->fill($request->all());
+		return response()->json($membershipOrigin);
+	}
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  string $slug
+	 * @return \Illuminate\Http\Response
+	 */
+	public function destroy($slug)
+	{
+		$membershipOrigin = MembershipOrigin::where('slug', $slug)->first();
+		$membershipOrigin->delete();
+		return response()->json('membershipOrigin deleted');
+	}
 }

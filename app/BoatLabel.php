@@ -23,4 +23,12 @@ class BoatLabel extends Model
 	protected $guarded = [
 		'slug', 'created_at', 'updated_at'
 	];
+
+	/**
+	 * The attributes that are date format
+	 * @var array
+	 */
+	protected $dates = [
+		'created_at', 'updated_at'
+	];
 }

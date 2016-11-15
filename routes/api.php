@@ -27,7 +27,15 @@ Route::group(['prefix' => '/v1'], function(){
 	*/
 	Route::group(['prefix' => 'labels'], function () {
 		/**
-		 * BoatLabel
+		 * Asac label
+		 */
+		Route::get('asac', 'AsacLabelController@index');
+		Route::get('asac/{slug}', 'AsacLabelController@show');
+		Route::post('asac', 'AsacLabelController@store');
+		Route::put('asac/{slug}', 'AsacLabelController@update');
+		Route::delete('asac/{slug}', 'AsacLabelController@destroy');
+		/**
+		 * Boat label
 		 */
 		Route::get('boat', 'BoatLabelController@index');
 		Route::get('boat/{slug}', 'BoatLabelController@show');
@@ -35,13 +43,37 @@ Route::group(['prefix' => '/v1'], function(){
 		Route::put('boat/{slug}', 'BoatLabelController@update');
 		Route::delete('boat/{slug}', 'BoatLabelController@destroy');
 		/**
-		 * DiveLabel
+		 * Dive label
 		 */
 		Route::get('dive', 'DiveLabelController@index');
 		Route::get('dive/{slug}', 'DiveLabelController@show');
 		Route::post('dive', 'DiveLabelController@store');
 		Route::put('dive/{slug}', 'DiveLabelController@update');
 		Route::delete('dive/{slug}', 'DiveLabelController@destroy');
+		/**
+		 * Invoice status
+		 */
+		Route::get('invoice', 'InvoiceStatusController@index');
+		Route::get('invoice/{slug}', 'InvoiceStatusController@show');
+		Route::post('invoice', 'InvoiceStatusController@store');
+		Route::put('invoice/{slug}', 'InvoiceStatusController@update');
+		Route::delete('invoice/{slug}', 'InvoiceStatusController@destroy');
+		/**
+		 * Insurance label
+		 */
+		Route::get('insurance', 'InsuranceLabelController@index');
+		Route::get('insurance/{slug}', 'InsuranceLabelController@show');
+		Route::post('insurance', 'InsuranceLabelController@store');
+		Route::put('insurance/{slug}', 'InsuranceLabelController@update');
+		Route::delete('insurance/{slug}', 'InsuranceLabelController@destroy');
+		/**
+		 * Membership origin
+		 */
+		Route::get('origin', 'MembershipOriginController@index');
+		Route::get('origin/{slug}', 'MembershipOriginController@show');
+		Route::post('origin', 'MembershipOriginController@store');
+		Route::put('origin/{slug}', 'MembershipOriginController@update');
+		Route::delete('origin/{slug}', 'MembershipOriginController@destroy');
 	});
 
 
@@ -76,6 +108,11 @@ Route::group(['prefix' => '/v1'], function(){
     Route::post('users/{slug}/dive', 'DiveLevelController@store');
     Route::put('users/{slug}/dive/{id}', 'DiveLevelController@update');
     Route::delete('users/{slug}/dive/{id}', 'DiveLevelController@destroy');
+	// Membership
+	Route::get('users/{slug}/membership', 'MembershipController@show');
+	Route::post('users/{slug}/membership', 'MembershipController@store');
+	Route::put('users/{slug}/membership/{id}', 'MembershipController@update');
+	Route::delete('users/{slug}/membership/{id}', 'MembershipController@destroy');
     /**
      * Events
      */
@@ -84,4 +121,12 @@ Route::group(['prefix' => '/v1'], function(){
     Route::post('events', 'EventController@store');
     Route::put('events/{slug}', 'EventController@update');
     Route::delete('events/{slug}', 'EventController@destroy');
+	/**
+	 * Products
+	 */
+	Route::get('products', 'ProductController@index');
+	Route::get('products/{slug}', 'ProductController@show');
+	Route::post('products', 'ProductController@store');
+	Route::put('products/{slug}', 'ProductController@update');
+	Route::delete('products/{slug}', 'ProductController@destroy');
 });

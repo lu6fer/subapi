@@ -17,7 +17,8 @@ class CommentController extends Controller
 	public function show($slug)
 	{
 		$article = Article::where('slug', $slug)->first();
-		return response()->json($article->comments);
+		$comments = $article->comments()->with('user');
+		return response()->json($comments);
 	}
 
     /**

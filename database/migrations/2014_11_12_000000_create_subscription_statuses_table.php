@@ -15,6 +15,7 @@ class CreateSubscriptionStatusesTable extends Migration
     {
         Schema::create('subscription_statuses', function (Blueprint $table) {
             $table->increments('id');
+	        $table->string('slug')->unique();
             $table->string('name');
             $table->string('description')->nullable();
             $table->timestamps();

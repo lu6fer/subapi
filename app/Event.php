@@ -30,16 +30,9 @@ class Event extends Model
      * @var array
      */
     protected $dates = [
-        'date'
+        'date', 'created_at', 'updated_at'
     ];
 
-    /**
-     * User relationship
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function user() {
-        return $this->belongsTo('App\User');
-    }
 
     /**
      * User(owner) relationship

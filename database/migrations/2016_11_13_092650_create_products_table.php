@@ -15,8 +15,9 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('parent_product')->unsigned()->index();
+            $table->integer('parent_product')->unsigned()->index()->nullable();
             $table->foreign('parent_product')->references('id')->on('products')->onDelete('cascade');
+	        $table->string('slug')->unique();
             $table->string('name');
             $table->string('description');
             $table->decimal('price');
