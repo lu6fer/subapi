@@ -17,8 +17,10 @@ class CreateSubscriptionsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->integer('status')->unsigned()->index();
-            $table->foreign('status')->references('id')->on('subscription_statuses')->onDelete('cascade');
+            $table->integer('status_id')->unsigned()->index();
+            $table->foreign('status_id')->references('id')->on('subscription_statuses')->onDelete('cascade');
+	        $table->integer('origin_id')->unsigned()->index();
+	        $table->foreign('origin_id')->references('id')->on('membership_origins')->onDelete('cascade');
             $table->date('expiration_date');
             $table->timestamps();
         });

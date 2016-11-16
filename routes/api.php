@@ -113,6 +113,11 @@ Route::group(['prefix' => '/v1'], function(){
 	Route::post('users/{slug}/membership', 'MembershipController@store');
 	Route::put('users/{slug}/membership/{id}', 'MembershipController@update');
 	Route::delete('users/{slug}/membership/{id}', 'MembershipController@destroy');
+	// Subscription
+	Route::get('users/{slug}/subscription', 'SubscriptionController@show');
+	Route::post('users/{slug}/subscription', 'SubscriptionController@store');
+	Route::put('users/{slug}/subscription/{id}', 'SubscriptionController@update');
+	Route::delete('users/{slug}/subscription/{id}', 'SubscriptionController@destroy');
     /**
      * Events
      */

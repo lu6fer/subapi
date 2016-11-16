@@ -52,7 +52,7 @@ class Product extends Model
 	 * Subscription plan relationship
 	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
 	 */
-	public function plan() {
-		return $this->hasMany('App\SubscriptionPlan');
+	public function subscriptions() {
+		return $this->belongsToMany('App\Subscription');
 	}
 }
