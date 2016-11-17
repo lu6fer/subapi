@@ -17,7 +17,10 @@ class DiveLevelController extends Controller
     public function show($slug)
     {
         $user = User::where('slug', $slug)->first();
-        return response()->json($user->dive);
+	    $dive = $user->dive()
+		    ->with('label')
+		    ->get();
+        return response()->json($dive);
     }
 
     /**
@@ -54,10 +57,11 @@ class DiveLevelController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param  string $slug
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug, $id)
     {
         $diveLevel = DiveLevel::find($id);
         $diveLevel->delete();

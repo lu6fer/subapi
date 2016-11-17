@@ -53,6 +53,7 @@ class BoatLabelController extends Controller
 	{
 		$boatLabel = BoatLabel::where('slug', $slug)->first();
 		$boatLabel->fill($request->all());
+		$boatLabel->save();
 		return response()->json($boatLabel);
 	}
 

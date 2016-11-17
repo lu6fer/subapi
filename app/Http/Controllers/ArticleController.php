@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\User;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -14,7 +15,10 @@ class ArticleController extends Controller
 	 */
 	public function index()
 	{
-		$articles = Article::with('user')->get();
+		$articles = Article::with(['user' => function($q)
+		{
+			$q->select('id', 'name', 'first_name');
+		}])->get();
 		return response()->json($articles);
 	}
 
@@ -27,6 +31,10 @@ class ArticleController extends Controller
 	public function show($slug)
 	{
 		$article = Article::where('slug', $slug)
+			->with(['user' => function($q)
+			{
+				$q->select('id', 'name', 'first_name');
+			}])
 			->with('comments')
 			->first();
 		return response()->json($article);
@@ -40,7 +48,9 @@ class ArticleController extends Controller
 	 */
 	public function store(Request $request)
 	{
-		$article = Article::create($request->all());
+		$user = User::findOrFail($request->input('user_id'));
+		$article = new Article($request->all());
+		$user->articles()->save($article);
 		return response()->json($article);
 	}
 

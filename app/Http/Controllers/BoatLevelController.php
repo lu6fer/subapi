@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\BoatLabel;
 use App\User;
 use App\BoatLevel;
 use Illuminate\Http\Request;
@@ -17,7 +18,10 @@ class BoatLevelController extends Controller
 	public function show($slug)
 	{
 		$user = User::where('slug', $slug)->first();
-		return response()->json($user->boat);
+		$boat = $user->boat()
+			->with('label')
+			->get();
+		return response()->json($boat);
 	}
 
 	/**
@@ -29,8 +33,12 @@ class BoatLevelController extends Controller
 	 */
 	public function store(Request $request, $slug)
 	{
-		$user = User::where('slug', $slug);
-		$boatLevel = $user->boat()->create($request->all());
+		$user = User::where('slug', $slug)->first();
+		$label = BoatLabel::findOrFail($request->input('level'));
+		$boatLevel = new BoatLevel($request->all());
+		$boatLevel->user()->associate($user);
+		$boatLevel->label()->associate($label);
+		$boatLevel->save();
 		return response()->json($boatLevel);
 	}
 
@@ -54,10 +62,11 @@ class BoatLevelController extends Controller
 	/**
 	 * Remove the specified resource from storage.
 	 *
+	 * @param  string $slug
 	 * @param  int $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy($id)
+	public function destroy($slug, $id)
 	{
 		$boatLevel = BoatLevel::find($id);
 		$boatLevel->delete();

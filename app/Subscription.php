@@ -37,7 +37,7 @@ class Subscription extends Model
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
 	 */
 	public function status() {
-		return $this->belongsTo('App\subscriptionStatus', 'status_id');
+		return $this->belongsTo('App\SubscriptionStatus', 'status_id');
 	}
 
 	/**
@@ -61,6 +61,6 @@ class Subscription extends Model
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
 	 */
 	public function products() {
-		return $this->belongsToMany('App\Product');
+		return $this->belongsToMany('App\Product', 'subscription_product');
 	}
 }

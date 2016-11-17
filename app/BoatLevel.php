@@ -47,6 +47,6 @@ class BoatLevel extends Model
 	 * @return \Illuminate\Database\Eloquent\Relations\HasOne
 	 */
 	public function label() {
-		return $this->hasOne('App\BoatLabel', 'id', 'level');
+		return $this->belongsTo('App\BoatLabel', 'level');
 	}
 }

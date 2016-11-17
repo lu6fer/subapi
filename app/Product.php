@@ -53,6 +53,6 @@ class Product extends Model
 	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
 	 */
 	public function subscriptions() {
-		return $this->belongsToMany('App\Subscription');
+		return $this->belongsToMany('App\Subscription', 'subscription_product');
 	}
 }

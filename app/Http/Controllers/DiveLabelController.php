@@ -53,6 +53,7 @@ class DiveLabelController extends Controller
 	{
 		$diveLabel = DiveLabel::where('slug', $slug)->first();
 		$diveLabel->fill($request->all());
+		$diveLabel->save();
 		return response()->json($diveLabel);
 	}
 

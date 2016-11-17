@@ -21,7 +21,8 @@ class MembershipController extends Controller
 		$membership = $user->membership()
 			->with('origin')
 			->with('asac')
-			->with('insurance');
+			->with('insurance')
+			->get();
 		return response()->json($membership);
 	}
 
@@ -59,12 +60,13 @@ class MembershipController extends Controller
 	/**
 	 * Remove the specified resource from storage.
 	 *
+	 * @param  string $slug
 	 * @param  int $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy($id)
+	public function destroy($slug, $id)
 	{
-		$membership = Membership::find($id);
+		$membership = Membership::findOrFail($id);
 		$membership->delete();
 		return response()->json('membership deleted');
 	}

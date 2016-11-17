@@ -27,7 +27,7 @@ class CreateBoatLevelsTable extends Migration
             $table->boolean('vhf_licence')->nullable();
             $table->string('vhf_licence_number')->nullable();
             $table->date('vhf_date')->nullable();
-	        $table->boolean('archive');
+	        $table->boolean('archive')->default(0);;
             $table->timestamps();
         });
     }

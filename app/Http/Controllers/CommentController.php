@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Comment;
+use App\User;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -17,7 +18,13 @@ class CommentController extends Controller
 	public function show($slug)
 	{
 		$article = Article::where('slug', $slug)->first();
-		$comments = $article->comments()->with('user');
+		$comments = $article
+			->comments()
+			->with(['user' => function($q)
+				{
+					$q->select('id', 'name', 'first_name');
+				}])
+			->get();
 		return response()->json($comments);
 	}
 
@@ -30,8 +37,12 @@ class CommentController extends Controller
      */
     public function store(Request $request, $slug)
     {
-	    $article = Article::where('slug', $slug);
-	    $comment = $article->comments()->create($request->all());
+	    $article = Article::where('slug', $slug)->first();
+	    $user = User::findOrFail($request->input('user_id'));
+	    $comment = new Comment($request->all());
+	    $comment->user()->associate($user);
+	    $comment->article()->associate($article);
+	    $comment->save();
 	    return response()->json($comment);
     }
 
@@ -45,20 +56,24 @@ class CommentController extends Controller
      */
     public function update(Request $request, $slug, $id)
     {
-	    $article = Article::where('slug', $slug);
-	    $comment = Comment::find($id);
+	    $article = Article::where('slug', $slug)->first();
+	    $user = User::findOrFail($request->input('user_id'));
+	    $comment = Comment::findOrFail($id);
 	    $comment->fill($request->all());
-	    $article->boat()->save($comment);
+	    $comment->user()->associate($user);
+	    $comment->article()->associate($article);
+	    $comment->save();
 	    return response()->json($comment);
     }
 
     /**
      * Remove the specified resource from storage.
      *
+     * @param  string $slug
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug, $id)
     {
 	    $comment = Comment::find($id);
 	    $comment->delete();

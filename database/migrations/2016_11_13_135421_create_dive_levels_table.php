@@ -24,7 +24,7 @@ class CreateDiveLevelsTable extends Migration
             $table->string('origine');
             $table->string('origine_number');
             $table->date('date');
-	        $table->boolean('archive');
+	        $table->boolean('archive')->default(0);
             $table->timestamps();
         });
     }

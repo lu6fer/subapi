@@ -53,6 +53,7 @@ class InsuranceLabelController extends Controller
 	{
 		$insuranceLabel = InsuranceLabel::where('slug', $slug)->first();
 		$insuranceLabel->fill($request->all());
+		$insuranceLabel->save();
 		return response()->json($insuranceLabel);
 	}
 

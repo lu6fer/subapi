@@ -18,7 +18,7 @@ class CreateArticlesTable extends Migration
 	        $table->string('slug')->unique();
             $table->string('title');
             $table->longText('body');
-            $table->string('status');
+            $table->string('status')->nullable();
             $table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

@@ -53,6 +53,7 @@ class MembershipOriginController extends Controller
 	{
 		$membershipOrigin = MembershipOrigin::where('slug', $slug)->first();
 		$membershipOrigin->fill($request->all());
+		$membershipOrigin->save();
 		return response()->json($membershipOrigin);
 	}
 

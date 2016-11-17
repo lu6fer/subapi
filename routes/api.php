@@ -74,6 +74,14 @@ Route::group(['prefix' => '/v1'], function(){
 		Route::post('origin', 'MembershipOriginController@store');
 		Route::put('origin/{slug}', 'MembershipOriginController@update');
 		Route::delete('origin/{slug}', 'MembershipOriginController@destroy');
+		/**
+		 * Subscription status
+		 */
+		Route::get('subscription', 'SubscriptionStatusController@index');
+		Route::get('subscription/{slug}', 'SubscriptionStatusController@show');
+		Route::post('subscription', 'SubscriptionStatusController@store');
+		Route::put('subscription/{slug}', 'SubscriptionStatusController@update');
+		Route::delete('subscription/{slug}', 'SubscriptionStatusController@destroy');
 	});
 
 
@@ -87,7 +95,7 @@ Route::group(['prefix' => '/v1'], function(){
 	Route::delete('articles/{slug}', 'ArticleController@destroy');
 	// Comments
 	Route::get('articles/{slug}/comments', 'CommentController@show');
-	Route::post('articles/{slug/comments', 'CommentController@store');
+	Route::post('articles/{slug}/comments', 'CommentController@store');
 	Route::put('articles/{slug}/comments/{id}', 'CommentController@update');
 	Route::delete('articles/{slug}/comments/{id}', 'CommentController@destroy');
 	/**
@@ -114,10 +122,10 @@ Route::group(['prefix' => '/v1'], function(){
 	Route::put('users/{slug}/membership/{id}', 'MembershipController@update');
 	Route::delete('users/{slug}/membership/{id}', 'MembershipController@destroy');
 	// Subscription
-	Route::get('users/{slug}/subscription', 'SubscriptionController@show');
-	Route::post('users/{slug}/subscription', 'SubscriptionController@store');
-	Route::put('users/{slug}/subscription/{id}', 'SubscriptionController@update');
-	Route::delete('users/{slug}/subscription/{id}', 'SubscriptionController@destroy');
+	Route::get('users/{slug}/subscriptions', 'SubscriptionController@show');
+	Route::post('users/{slug}/subscriptions', 'SubscriptionController@store');
+	Route::put('users/{slug}/subscriptions/{id}', 'SubscriptionController@update');
+	Route::delete('users/{slug}/subscriptions/{id}', 'SubscriptionController@destroy');
     /**
      * Events
      */
