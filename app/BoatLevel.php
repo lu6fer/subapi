@@ -12,7 +12,7 @@ class BoatLevel extends Model
 	 * @var array
 	 */
 	protected $fillable = [
-		'level', 'licence', 'instructor',
+		'licence', 'instructor',
 		'origin', 'origin_number', 'date',
 		'vhf_licence', 'vhf_licence_number','vhf_date'
 	];
@@ -23,7 +23,7 @@ class BoatLevel extends Model
 	 * @var array
 	 */
 	protected $guarded = [
-		'user_id', 'created_at', 'updated_at'
+        'level', 'user_id', 'created_at', 'updated_at'
 	];
 
 	/**

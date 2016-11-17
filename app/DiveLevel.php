@@ -12,8 +12,8 @@ class DiveLevel extends Model
      * @var array
      */
     protected $fillable = [
-        'level', 'licence', 'instructor',
-        'origin', 'origin_number', 'date'
+        'licence', 'instructor', 'origin',
+        'origin_number', 'date', 'archive'
     ];
 
     /**
@@ -22,7 +22,8 @@ class DiveLevel extends Model
      * @var array
      */
     protected $guarded = [
-        'user_id', 'created_at', 'updated_at'
+        'level', 'user_id',
+        'created_at', 'updated_at'
     ];
 
 	/**
@@ -43,9 +44,9 @@ class DiveLevel extends Model
 
     /**
      * Label relationship
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function label() {
-        return $this->hasOne('App\DiveLabel', 'id', 'level');
+        return $this->belongsTo('App\DiveLabel', 'level');
     }
 }

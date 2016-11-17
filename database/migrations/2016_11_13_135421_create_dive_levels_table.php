@@ -21,8 +21,8 @@ class CreateDiveLevelsTable extends Migration
             $table->foreign('level')->references('id')->on('dive_labels')->onDelete('cascade');
             $table->string('licence');
             $table->string('instructor');
-            $table->string('origine');
-            $table->string('origine_number');
+            $table->string('origin');
+            $table->string('origin_number');
             $table->date('date');
 	        $table->boolean('archive')->default(0);
             $table->timestamps();

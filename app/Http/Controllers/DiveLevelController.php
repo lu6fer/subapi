@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\DiveLabel;
 use App\User;
 use App\DiveLevel;
+use Illuminate\Http\Request;
 
 class DiveLevelController extends Controller
 {
@@ -17,9 +18,9 @@ class DiveLevelController extends Controller
     public function show($slug)
     {
         $user = User::where('slug', $slug)->first();
-	    $dive = $user->dive()
-		    ->with('label')
-		    ->get();
+        $dive = $user->dive()
+            ->with('label')
+            ->get();
         return response()->json($dive);
     }
 
@@ -32,8 +33,12 @@ class DiveLevelController extends Controller
      */
     public function store(Request $request, $slug)
     {
-        $user = User::where('slug', $slug);
-        $diveLevel = $user->dive()->create($request->all());
+        $user = User::where('slug', $slug)->first();
+        $label = DiveLabel::findOrFail($request->input('level'));
+        $diveLevel = new DiveLevel($request->all());
+        $diveLevel->user()->associate($user);
+        $diveLevel->label()->associate($label);
+        $diveLevel->save();
         return response()->json($diveLevel);
     }
 
@@ -47,10 +52,13 @@ class DiveLevelController extends Controller
      */
     public function update(Request $request, $slug, $id)
     {
-        $user = User::where('slug', $slug);
+        $user = User::where('slug', $slug)->first();
+        $label = DiveLabel::findOrFail($request->input('level'));
         $diveLevel = DiveLevel::find($id);
         $diveLevel->fill($request->all());
-        $user->dive()->save($diveLevel);
+        $diveLevel->label()->associate($label);
+        $diveLevel->user()->associate($user);
+        $diveLevel->save();
         return response()->json($diveLevel);
     }
 
