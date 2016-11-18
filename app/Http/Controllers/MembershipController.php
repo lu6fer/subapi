@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\AsacLabel;
+use App\InsuranceLabel;
+use App\MembershipOrigin;
 use Illuminate\Http\Request;
 use App\User;
 use App\Membership;
@@ -35,8 +38,17 @@ class MembershipController extends Controller
 	 */
 	public function store(Request $request, $slug)
 	{
-		$user = User::where('slug', $slug);
-		$membership = $user->membership()->create($request->all());
+		$user = User::where('slug', $slug)->first();
+		$asac = AsacLabel::findOrFail($request->input('asac_id'));
+		$origin = MembershipOrigin::findOrFail($request->input('origin_id'));
+		$insurance = InsuranceLabel::findOrFail($request->input('insurance_id'));
+		$membership = new Membership($request->all());
+
+		$membership->user()->associate($user);
+		$membership->asac()->associate($asac);
+		$membership->origin()->associate($origin);
+		$membership->insurance()->associate($insurance);
+		$membership->save();
 		return response()->json($membership);
 	}
 

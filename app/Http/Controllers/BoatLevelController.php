@@ -52,10 +52,13 @@ class BoatLevelController extends Controller
 	 */
 	public function update(Request $request, $slug, $id)
 	{
-		$user = User::where('slug', $slug);
+		$user = User::where('slug', $slug)->first();
+		$label = BoatLabel::findOrFail($request->input('level'));
 		$boatLevel = BoatLevel::find($id);
 		$boatLevel->fill($request->all());
-		$user->boat()->save($boatLevel);
+		$boatLevel->label()->associate($label);
+		$boatLevel->user()->associate($user);
+		$boatLevel->save();
 		return response()->json($boatLevel);
 	}
 

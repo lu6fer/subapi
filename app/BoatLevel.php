@@ -13,8 +13,9 @@ class BoatLevel extends Model
 	 */
 	protected $fillable = [
 		'licence', 'instructor',
-		'origin', 'origin_number', 'date',
-		'vhf_licence', 'vhf_licence_number','vhf_date'
+		'origin', 'origin_number',
+		'date', 'vhf_licence',
+		'vhf_licence_number','vhf_date', 'archive'
 	];
 
 	/**

@@ -45,25 +45,25 @@ class Membership extends Model
 
 	/**
 	 * Membership origin relationship
-	 * @return \Illuminate\Database\Eloquent\Relations\HasOne
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
 	 */
 	public function origin() {
-		return $this->hasOne('App\MembershipOrigin', 'origin_id');
+		return $this->belongsTo('App\MembershipOrigin', 'origin_id');
 	}
 
 	/**
 	 * Insurance label relationship
-	 * @return \Illuminate\Database\Eloquent\Relations\HasOne
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
 	 */
 	public function insurance() {
-		return $this->hasOne('App\InsuranceLabel', 'insurance_id');
+		return $this->belongsTo('App\InsuranceLabel', 'insurance_id');
 	}
 
 	/**
 	 * Asac label relationship
-	 * @return \Illuminate\Database\Eloquent\Relations\HasOne
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
 	 */
 	public function asac() {
-		return $this->hasOne('App\AsacLabel', 'asac_id');
+		return $this->belongsTo('App\AsacLabel', 'asac_id');
 	}
 }

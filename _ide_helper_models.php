@@ -30,38 +30,6 @@ namespace App{
 
 namespace App{
 /**
- * App\DiveLevel
- *
- * @property integer $id
- * @property integer $user_id
- * @property integer $level
- * @property string $licence
- * @property string $instructor
- * @property string $origine
- * @property string $origine_number
- * @property string $date
- * @property boolean $archive
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @property-read \App\User $user
- * @property-read \App\DiveLabel $label
- * @method static \Illuminate\Database\Query\Builder|\App\DiveLevel whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\DiveLevel whereUserId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\DiveLevel whereLevel($value)
- * @method static \Illuminate\Database\Query\Builder|\App\DiveLevel whereLicence($value)
- * @method static \Illuminate\Database\Query\Builder|\App\DiveLevel whereInstructor($value)
- * @method static \Illuminate\Database\Query\Builder|\App\DiveLevel whereOrigine($value)
- * @method static \Illuminate\Database\Query\Builder|\App\DiveLevel whereOrigineNumber($value)
- * @method static \Illuminate\Database\Query\Builder|\App\DiveLevel whereDate($value)
- * @method static \Illuminate\Database\Query\Builder|\App\DiveLevel whereArchive($value)
- * @method static \Illuminate\Database\Query\Builder|\App\DiveLevel whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\DiveLevel whereUpdatedAt($value)
- */
-	class DiveLevel extends \Eloquent {}
-}
-
-namespace App{
-/**
  * App\Comment
  *
  * @property integer $id
@@ -279,52 +247,6 @@ namespace App{
 
 namespace App{
 /**
- * App\Membership
- *
- * @property integer $id
- * @property integer $user_id
- * @property string $licence
- * @property integer $asac_id
- * @property \Carbon\Carbon $date
- * @property integer $origin_id
- * @property boolean $magazine
- * @property boolean $tank
- * @property boolean $regulator
- * @property boolean $supervisor
- * @property boolean $pool_lannion
- * @property boolean $free_pool
- * @property boolean $pool_trestel
- * @property boolean $local_access
- * @property integer $insurance_id
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @property-read \App\User $user
- * @property-read \App\MembershipOrigin $origin
- * @property-read \App\InsuranceLabel $insurance
- * @property-read \App\AsacLabel $asac
- * @method static \Illuminate\Database\Query\Builder|\App\Membership whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Membership whereUserId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Membership whereLicence($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Membership whereAsacId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Membership whereDate($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Membership whereOriginId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Membership whereMagazine($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Membership whereTank($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Membership whereRegulator($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Membership whereSupervisor($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Membership wherePoolLannion($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Membership whereFreePool($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Membership wherePoolTrestel($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Membership whereLocalAccess($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Membership whereInsuranceId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Membership whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Membership whereUpdatedAt($value)
- */
-	class Membership extends \Eloquent {}
-}
-
-namespace App{
-/**
  * App\SubscriptionStatus
  *
  * @property integer $id
@@ -452,6 +374,38 @@ namespace App{
 
 namespace App{
 /**
+ * App\DiveLevel
+ *
+ * @property integer $id
+ * @property integer $user_id
+ * @property integer $level
+ * @property string $licence
+ * @property string $instructor
+ * @property string $origine
+ * @property string $origine_number
+ * @property string $date
+ * @property boolean $archive
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read \App\User $user
+ * @property-read \App\DiveLabel $label
+ * @method static \Illuminate\Database\Query\Builder|\App\DiveLevel whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\DiveLevel whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\DiveLevel whereLevel($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\DiveLevel whereLicence($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\DiveLevel whereInstructor($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\DiveLevel whereOrigine($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\DiveLevel whereOrigineNumber($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\DiveLevel whereDate($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\DiveLevel whereArchive($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\DiveLevel whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\DiveLevel whereUpdatedAt($value)
+ */
+	class DiveLevel extends \Eloquent {}
+}
+
+namespace App{
+/**
  * App\BoatLevel
  *
  * @property integer $id
@@ -486,5 +440,51 @@ namespace App{
  * @method static \Illuminate\Database\Query\Builder|\App\BoatLevel whereUpdatedAt($value)
  */
 	class BoatLevel extends \Eloquent {}
+}
+
+namespace App{
+/**
+ * App\Membership
+ *
+ * @property integer $id
+ * @property integer $user_id
+ * @property string $licence
+ * @property integer $asac_id
+ * @property \Carbon\Carbon $date
+ * @property integer $origin_id
+ * @property boolean $magazine
+ * @property boolean $tank
+ * @property boolean $regulator
+ * @property boolean $supervisor
+ * @property boolean $pool_lannion
+ * @property boolean $free_pool
+ * @property boolean $pool_trestel
+ * @property boolean $local_access
+ * @property integer $insurance_id
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read \App\User $user
+ * @property-read \App\MembershipOrigin $origin
+ * @property-read \App\InsuranceLabel $insurance
+ * @property-read \App\AsacLabel $asac
+ * @method static \Illuminate\Database\Query\Builder|\App\Membership whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Membership whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Membership whereLicence($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Membership whereAsacId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Membership whereDate($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Membership whereOriginId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Membership whereMagazine($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Membership whereTank($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Membership whereRegulator($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Membership whereSupervisor($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Membership wherePoolLannion($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Membership whereFreePool($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Membership wherePoolTrestel($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Membership whereLocalAccess($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Membership whereInsuranceId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Membership whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Membership whereUpdatedAt($value)
+ */
+	class Membership extends \Eloquent {}
 }
 
