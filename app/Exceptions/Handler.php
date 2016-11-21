@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Watson\Validating\ValidationException;
 
 class Handler extends ExceptionHandler
 {
@@ -44,6 +45,16 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+	    if ($exception instanceof \Watson\Validating\ValidationException) {
+		    $json = [
+			    'success' => false,
+			    'error' => [
+				    $exception->getErrors()
+			    ],
+		    ];
+
+		    return response()->json($json, 400);
+	    }
         return parent::render($request, $exception);
     }
 

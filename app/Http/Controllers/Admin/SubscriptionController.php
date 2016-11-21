@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\MembershipOrigin;
 use App\SubscriptionStatus;
 use Illuminate\Http\Request;
 use App\User;
 use App\Subscription;
+use App\Http\Controllers\Controller;
 
 class SubscriptionController extends Controller
 {

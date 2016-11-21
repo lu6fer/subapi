@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\DiveLabel;
+use App\Role;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class DiveLabelController extends Controller
+class RoleController extends Controller
 {
 	/**
 	 * Display a listing of the resource.
@@ -14,20 +15,22 @@ class DiveLabelController extends Controller
 	 */
 	public function index()
 	{
-		$diveLabels = DiveLabel::all();
-		return response()->json($diveLabels);
+		$roles = Role::all();
+		return response()->json($roles);
 	}
 
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  string $slug
+	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
 	public function show($slug)
 	{
-		$diveLabel = DiveLabel::where('slug', $slug)->first();
-		return response()->json($diveLabel);
+		$role = Role::where('slug', $slug)
+			->with('users')
+			->first();
+		return response()->json($role);
 	}
 
 	/**
@@ -38,8 +41,8 @@ class DiveLabelController extends Controller
 	 */
 	public function store(Request $request)
 	{
-		$diveLabel = DiveLabel::create($request->all());
-		return response()->json($diveLabel);
+		$role = Role::create($request->all());
+		return response()->json($role);
 	}
 
 	/**
@@ -51,10 +54,10 @@ class DiveLabelController extends Controller
 	 */
 	public function update(Request $request, $slug)
 	{
-		$diveLabel = DiveLabel::where('slug', $slug)->first();
-		$diveLabel->fill($request->all());
-		$diveLabel->save();
-		return response()->json($diveLabel);
+		$role = Role::where('slug', $slug)->first();
+		$role->fill($request->all());
+		$role->save();
+		return response()->json($role);
 	}
 
 	/**
@@ -65,8 +68,8 @@ class DiveLabelController extends Controller
 	 */
 	public function destroy($slug)
 	{
-		$diveLabel = DiveLabel::where('slug', $slug)->first();
-		$diveLabel->delete();
-		return response()->json('diveLabel deleted');
+		$role = Role::where('slug', $slug)->first();
+		$role->delete();
+		return response()->json('role deleted');
 	}
 }

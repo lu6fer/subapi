@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Article;
-use App\User;
+use App\AsacLabel;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class ArticleController extends Controller
+class AsacLabelController extends Controller
 {
 	/**
 	 * Display a listing of the resource.
@@ -15,11 +15,8 @@ class ArticleController extends Controller
 	 */
 	public function index()
 	{
-		$articles = Article::with(['user' => function($q)
-		{
-			$q->select('id', 'name', 'first_name');
-		}])->get();
-		return response()->json($articles);
+		$asacLabels = AsacLabel::all();
+		return response()->json($asacLabels);
 	}
 
 	/**
@@ -30,14 +27,8 @@ class ArticleController extends Controller
 	 */
 	public function show($slug)
 	{
-		$article = Article::where('slug', $slug)
-			->with(['user' => function($q)
-			{
-				$q->select('id', 'name', 'first_name');
-			}])
-			->with('comments')
-			->first();
-		return response()->json($article);
+		$asacLabel = AsacLabel::where('slug', $slug)->first();
+		return response()->json($asacLabel);
 	}
 
 	/**
@@ -48,10 +39,8 @@ class ArticleController extends Controller
 	 */
 	public function store(Request $request)
 	{
-		$user = User::findOrFail($request->input('user_id'));
-		$article = new Article($request->all());
-		$user->articles()->save($article);
-		return response()->json($article);
+		$asacLabel = AsacLabel::create($request->all());
+		return response()->json($asacLabel);
 	}
 
 	/**
@@ -63,9 +52,10 @@ class ArticleController extends Controller
 	 */
 	public function update(Request $request, $slug)
 	{
-		$article = Article::where('slug', $slug)->first();
-		$article->fill($request->all());
-		return response()->json($article);
+		$asacLabel = AsacLabel::where('slug', $slug)->first();
+		$asacLabel->fill($request->all());
+		$asacLabel->save();
+		return response()->json($asacLabel);
 	}
 
 	/**
@@ -76,8 +66,8 @@ class ArticleController extends Controller
 	 */
 	public function destroy($slug)
 	{
-		$article = Article::where('slug', $slug)->first();
-		$article->delete();
-		return response()->json('article deleted');
+		$asacLabel = AsacLabel::where('slug', $slug)->first();
+		$asacLabel->delete();
+		return response()->json('aAsacLabel deleted');
 	}
 }

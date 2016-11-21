@@ -106,4 +106,20 @@ class User extends Authenticatable
     public function tiv() {
 	    return $this->hasOne('App\TivLevel');
     }
+
+	/**
+	 * Role relationship
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 */
+    public function roles() {
+	    return $this->belongsToMany('App\Role');
+    }
+
+	/**
+	 * Group relationship
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 */
+	public function groups() {
+		return $this->belongsToMany('App\Group');
+	}
 }

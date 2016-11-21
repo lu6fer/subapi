@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
 	    $this->call(MembershipOriginTableSeeder::class);
 	    $this->call(SubscriptionStatusesTableSeeder::class);
 	    $this->call(InsuranceLabelsTableSeeder::class);
+	    $this->call(GroupsTableSeeder::class);
+	    $this->call(RolesTableSeeder::class);
         $this->call(UsersTableSeeder::class);
     }
 }

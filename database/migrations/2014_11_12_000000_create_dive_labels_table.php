@@ -29,6 +29,6 @@ class CreateDiveLabelsTable extends Migration
      */
     public function down()
     {
-        //Schema::dropIfExists('dive_labels');
+        Schema::dropIfExists('dive_labels');
     }
 }

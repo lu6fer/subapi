@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\AsacLabel;
 use App\InsuranceLabel;
@@ -8,6 +8,7 @@ use App\MembershipOrigin;
 use Illuminate\Http\Request;
 use App\User;
 use App\Membership;
+use App\Http\Controllers\Controller;
 
 class MembershipController extends Controller
 {

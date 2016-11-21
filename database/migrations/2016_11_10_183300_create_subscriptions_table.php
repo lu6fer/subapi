@@ -33,7 +33,9 @@ class CreateSubscriptionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subscriptions');
-        Schema::dropIfExists('subscription_statuses');
+	    DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+	    Schema::dropIfExists('subscriptions');
+	    Schema::dropIfExists('subscription_statuses');
+	    DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

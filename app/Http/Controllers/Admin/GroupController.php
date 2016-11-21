@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\BoatLabel;
+use App\Group;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class BoatLabelController extends Controller
+class GroupController extends Controller
 {
 	/**
 	 * Display a listing of the resource.
@@ -14,8 +15,8 @@ class BoatLabelController extends Controller
 	 */
 	public function index()
 	{
-		$boatLabels = BoatLabel::all();
-		return response()->json($boatLabels);
+		$groups = Group::all();
+		return response()->json($groups);
 	}
 
 	/**
@@ -26,8 +27,10 @@ class BoatLabelController extends Controller
 	 */
 	public function show($slug)
 	{
-		$boatLabel = BoatLabel::where('slug', $slug)->first();
-		return response()->json($boatLabel);
+		$group = Group::where('slug', $slug)
+			->with('users')
+			->first();
+		return response()->json($group);
 	}
 
 	/**
@@ -38,8 +41,8 @@ class BoatLabelController extends Controller
 	 */
 	public function store(Request $request)
 	{
-		$boatLabel = BoatLabel::create($request->all());
-		return response()->json($boatLabel);
+		$group = Group::create($request->all());
+		return response()->json($group);
 	}
 
 	/**
@@ -51,10 +54,10 @@ class BoatLabelController extends Controller
 	 */
 	public function update(Request $request, $slug)
 	{
-		$boatLabel = BoatLabel::where('slug', $slug)->first();
-		$boatLabel->fill($request->all());
-		$boatLabel->save();
-		return response()->json($boatLabel);
+		$group = Group::where('slug', $slug)->first();
+		$group->fill($request->all());
+		$group->save();
+		return response()->json($group);
 	}
 
 	/**
@@ -65,8 +68,8 @@ class BoatLabelController extends Controller
 	 */
 	public function destroy($slug)
 	{
-		$boatLabel = BoatLabel::where('slug', $slug)->first();
-		$boatLabel->delete();
-		return response()->json('boatLabel deleted');
+		$group = Group::where('slug', $slug)->first();
+		$group->delete();
+		return response()->json('group deleted');
 	}
 }

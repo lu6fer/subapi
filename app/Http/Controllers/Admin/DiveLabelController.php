@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\InsuranceLabel;
+use App\DiveLabel;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class InsuranceLabelController extends Controller
+class DiveLabelController extends Controller
 {
 	/**
 	 * Display a listing of the resource.
@@ -14,8 +15,8 @@ class InsuranceLabelController extends Controller
 	 */
 	public function index()
 	{
-		$insuranceLabels = InsuranceLabel::all();
-		return response()->json($insuranceLabels);
+		$diveLabels = DiveLabel::all();
+		return response()->json($diveLabels);
 	}
 
 	/**
@@ -26,8 +27,8 @@ class InsuranceLabelController extends Controller
 	 */
 	public function show($slug)
 	{
-		$insuranceLabel = InsuranceLabel::where('slug', $slug)->first();
-		return response()->json($insuranceLabel);
+		$diveLabel = DiveLabel::where('slug', $slug)->first();
+		return response()->json($diveLabel);
 	}
 
 	/**
@@ -38,8 +39,8 @@ class InsuranceLabelController extends Controller
 	 */
 	public function store(Request $request)
 	{
-		$insuranceLabel = InsuranceLabel::create($request->all());
-		return response()->json($insuranceLabel);
+		$diveLabel = DiveLabel::create($request->all());
+		return response()->json($diveLabel);
 	}
 
 	/**
@@ -51,10 +52,10 @@ class InsuranceLabelController extends Controller
 	 */
 	public function update(Request $request, $slug)
 	{
-		$insuranceLabel = InsuranceLabel::where('slug', $slug)->first();
-		$insuranceLabel->fill($request->all());
-		$insuranceLabel->save();
-		return response()->json($insuranceLabel);
+		$diveLabel = DiveLabel::where('slug', $slug)->first();
+		$diveLabel->fill($request->all());
+		$diveLabel->save();
+		return response()->json($diveLabel);
 	}
 
 	/**
@@ -65,8 +66,8 @@ class InsuranceLabelController extends Controller
 	 */
 	public function destroy($slug)
 	{
-		$insuranceLabel = InsuranceLabel::where('slug', $slug)->first();
-		$insuranceLabel->delete();
-		return response()->json('insuranceLabel deleted');
+		$diveLabel = DiveLabel::where('slug', $slug)->first();
+		$diveLabel->delete();
+		return response()->json('diveLabel deleted');
 	}
 }

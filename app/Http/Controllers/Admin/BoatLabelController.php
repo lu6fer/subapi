@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\InvoiceStatus;
+use App\BoatLabel;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class InvoiceStatusController extends Controller
+class BoatLabelController extends Controller
 {
 	/**
 	 * Display a listing of the resource.
@@ -14,8 +15,8 @@ class InvoiceStatusController extends Controller
 	 */
 	public function index()
 	{
-		$invoiceStatuss = InvoiceStatus::all();
-		return response()->json($invoiceStatuss);
+		$boatLabels = BoatLabel::all();
+		return response()->json($boatLabels);
 	}
 
 	/**
@@ -26,8 +27,8 @@ class InvoiceStatusController extends Controller
 	 */
 	public function show($slug)
 	{
-		$invoiceStatus = InvoiceStatus::where('slug', $slug)->first();
-		return response()->json($invoiceStatus);
+		$boatLabel = BoatLabel::where('slug', $slug)->first();
+		return response()->json($boatLabel);
 	}
 
 	/**
@@ -38,8 +39,8 @@ class InvoiceStatusController extends Controller
 	 */
 	public function store(Request $request)
 	{
-		$invoiceStatus = InvoiceStatus::create($request->all());
-		return response()->json($invoiceStatus);
+		$boatLabel = BoatLabel::create($request->all());
+		return response()->json($boatLabel);
 	}
 
 	/**
@@ -51,9 +52,10 @@ class InvoiceStatusController extends Controller
 	 */
 	public function update(Request $request, $slug)
 	{
-		$invoiceStatus = InvoiceStatus::where('slug', $slug)->first();
-		$invoiceStatus->fill($request->all());
-		return response()->json($invoiceStatus);
+		$boatLabel = BoatLabel::where('slug', $slug)->first();
+		$boatLabel->fill($request->all());
+		$boatLabel->save();
+		return response()->json($boatLabel);
 	}
 
 	/**
@@ -64,8 +66,8 @@ class InvoiceStatusController extends Controller
 	 */
 	public function destroy($slug)
 	{
-		$invoiceStatus = InvoiceStatus::where('slug', $slug)->first();
-		$invoiceStatus->delete();
-		return response()->json('invoiceStatus deleted');
+		$boatLabel = BoatLabel::where('slug', $slug)->first();
+		$boatLabel->delete();
+		return response()->json('boatLabel deleted');
 	}
 }

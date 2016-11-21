@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\MembershipOrigin;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class MembershipOriginController extends Controller
 {

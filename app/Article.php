@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Watson\Validating\ValidatingTrait;
 
 class Article extends Model
 {
+	use ValidatingTrait;
 	/**
 	 * The attributes that are mass assignable.
 	 *
@@ -31,6 +33,30 @@ class Article extends Model
 	protected $dates = [
 		'created_at', 'updated_at'
 	];
+
+	/**
+	 * Model validation rules
+	 *
+	 * @var array
+	 */
+	protected $rules = [
+		'title' => 'required|alpha_dash',
+		'body' => 'required',
+		'slug' => 'required|unique:article,slug'
+	];
+
+	/**
+	 * Validation messages to be passed to the validator.
+	 *
+	 * @var array
+	 */
+	protected $validationMessages = [
+		'title.required' => 'title is required',
+		'body.required' => 'article is required',
+		'slug.unique' => 'This title is already use'
+	];
+
+	protected $throwValidationExceptions = true;
 
 	/**
 	 * User relationship

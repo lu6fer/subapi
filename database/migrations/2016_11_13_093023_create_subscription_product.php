@@ -29,6 +29,6 @@ class CreateSubscriptionProduct extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subscription_plans_products');
+        Schema::dropIfExists('subscription_products');
     }
 }

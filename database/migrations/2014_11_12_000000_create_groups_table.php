@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMembershipOriginsTable extends Migration
+class CreateGroupsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateMembershipOriginsTable extends Migration
      */
     public function up()
     {
-        Schema::create('membership_origins', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('groups', function (Blueprint $table) {
+	        $table->increments('id');
 	        $table->string('slug')->unique();
-            $table->string('name');
-            $table->string('description')->nullable();
-            $table->timestamps();
+	        $table->string('name');
+	        $table->string('description')->nullable();
+	        $table->timestamps();
         });
     }
 
@@ -29,6 +29,6 @@ class CreateMembershipOriginsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('membership_origins');
+        Schema::dropIfExists('groups');
     }
 }

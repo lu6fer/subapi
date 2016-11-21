@@ -29,6 +29,6 @@ class CreateInvoiceStatusesTable extends Migration
      */
     public function down()
     {
-        //Schema::dropIfExists('invoice_statuses');
+        Schema::dropIfExists('invoice_statuses');
     }
 }

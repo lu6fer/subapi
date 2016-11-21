@@ -33,6 +33,8 @@ class CreateMembershipsTable extends Migration
             $table->boolean('local_access')->nullable();
 	        $table->integer('insurance_id')->unsigned()->index();
 	        $table->foreign('insurance_id')->references('id')->on('insurance_labels')->onDelete('cascade');
+	        $table->string('certificat')->nullable();
+	        $table->date('certificat_date')->nullable();
             $table->timestamps();
         });
     }

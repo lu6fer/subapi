@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\User;
 use App\TivLevel;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class TivLevelController extends Controller
 {

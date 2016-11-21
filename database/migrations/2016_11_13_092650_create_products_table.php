@@ -32,8 +32,9 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
-        // delete pivot table before
-        Schema::dropIfExists('subscription_plans_products');
-        Schema::dropIfExists('products');
+	    DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+	    Schema::dropIfExists('products');
+	    Schema::dropIfExists('subscription_products');
+	    DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
@@ -32,7 +33,9 @@ class UserController extends Controller
 				'dive',
 				'boat',
 				'subscriptions',
-				'tiv'
+				'tiv',
+				'roles',
+				'groups'
 			)
 			->first();
 		return response()->json($user);

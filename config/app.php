@@ -167,7 +167,7 @@ return [
          * Package Service Providers...
          */
 
-        //
+        \Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -226,7 +226,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Uuid' => Webpatser\Uuid\Uuid::class,
-
+        'JWTAuth' => \Tymon\JWTAuth\Facades\JWTAuth::class,
     ],
 
 ];

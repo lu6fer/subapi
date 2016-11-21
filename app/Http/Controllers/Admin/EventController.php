@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Event;
+use App\Http\Controllers\Controller;
 
 class EventController extends Controller
 {

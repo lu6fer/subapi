@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\BoatLabel;
 use App\User;
 use App\BoatLevel;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class BoatLevelController extends Controller
 {

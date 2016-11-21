@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\AsacLabel;
+use App\InvoiceStatus;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class AsacLabelController extends Controller
+class InvoiceStatusController extends Controller
 {
 	/**
 	 * Display a listing of the resource.
@@ -14,8 +15,8 @@ class AsacLabelController extends Controller
 	 */
 	public function index()
 	{
-		$asacLabels = AsacLabel::all();
-		return response()->json($asacLabels);
+		$invoiceStatuss = InvoiceStatus::all();
+		return response()->json($invoiceStatuss);
 	}
 
 	/**
@@ -26,8 +27,8 @@ class AsacLabelController extends Controller
 	 */
 	public function show($slug)
 	{
-		$asacLabel = AsacLabel::where('slug', $slug)->first();
-		return response()->json($asacLabel);
+		$invoiceStatus = InvoiceStatus::where('slug', $slug)->first();
+		return response()->json($invoiceStatus);
 	}
 
 	/**
@@ -38,8 +39,8 @@ class AsacLabelController extends Controller
 	 */
 	public function store(Request $request)
 	{
-		$asacLabel = AsacLabel::create($request->all());
-		return response()->json($asacLabel);
+		$invoiceStatus = InvoiceStatus::create($request->all());
+		return response()->json($invoiceStatus);
 	}
 
 	/**
@@ -51,10 +52,9 @@ class AsacLabelController extends Controller
 	 */
 	public function update(Request $request, $slug)
 	{
-		$asacLabel = AsacLabel::where('slug', $slug)->first();
-		$asacLabel->fill($request->all());
-		$asacLabel->save();
-		return response()->json($asacLabel);
+		$invoiceStatus = InvoiceStatus::where('slug', $slug)->first();
+		$invoiceStatus->fill($request->all());
+		return response()->json($invoiceStatus);
 	}
 
 	/**
@@ -65,8 +65,8 @@ class AsacLabelController extends Controller
 	 */
 	public function destroy($slug)
 	{
-		$asacLabel = AsacLabel::where('slug', $slug)->first();
-		$asacLabel->delete();
-		return response()->json('aAsacLabel deleted');
+		$invoiceStatus = InvoiceStatus::where('slug', $slug)->first();
+		$invoiceStatus->delete();
+		return response()->json('invoiceStatus deleted');
 	}
 }

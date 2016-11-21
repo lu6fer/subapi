@@ -14,7 +14,8 @@ class Membership extends Model
 	protected $fillable = [
 		'licence', 'date', 'magazine', 'tank',
 		'regulator', 'supervisor', 'pool_lannion',
-		'free_pool', 'pool_trestel', 'local_access'
+		'free_pool', 'pool_trestel', 'local_access',
+		'certificat', 'certificat_date'
 	];
 
 	/**
@@ -32,7 +33,7 @@ class Membership extends Model
 	 * @var array
 	 */
 	protected $dates = [
-		'date', 'created_at', 'updated_at'
+		'date', 'certificat_date', 'created_at', 'updated_at'
 	];
 
 	/**

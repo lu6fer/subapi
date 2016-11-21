@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\DiveLabel;
 use App\User;
 use App\DiveLevel;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class DiveLevelController extends Controller
 {
