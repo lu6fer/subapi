@@ -63,4 +63,12 @@ class Subscription extends Model
 	public function products() {
 		return $this->belongsToMany('App\Product', 'subscription_product');
 	}
+
+	/**
+	 * Invoice relationship
+	 * @return \Illuminate\Database\Eloquent\Relations\HasOne
+	 */
+	public function invoice() {
+		return $this->hasOne('App\Invoice');
+	}
 }

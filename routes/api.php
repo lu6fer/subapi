@@ -126,6 +126,11 @@ Route::group(['prefix' => '/v1'], function(){
 	Route::post('users/{slug}/subscriptions', 'SubscriptionController@store');
 	Route::put('users/{slug}/subscriptions/{id}', 'SubscriptionController@update');
 	Route::delete('users/{slug}/subscriptions/{id}', 'SubscriptionController@destroy');
+	// Tiv level
+	Route::get('users/{slug}/tiv', 'TivLevelController@show');
+	Route::post('users/{slug}/tiv', 'TivLevelController@store');
+	Route::put('users/{slug}/tiv/{id}', 'TivLevelController@update');
+	Route::delete('users/{slug}/tiv/{id}', 'TivLevelController@destroy');
     /**
      * Events
      */

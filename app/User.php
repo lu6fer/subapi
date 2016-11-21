@@ -88,7 +88,7 @@ class User extends Authenticatable
 	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
 	 */
 	public function organizer() {
-		return $this->hasMany('App\Event');
+		return $this->hasMany('App\Event', 'owner');
 	}
 
 	/**
@@ -97,5 +97,13 @@ class User extends Authenticatable
 	 */
 	public function subscriptions() {
         return $this->hasMany('App\Subscription');
+    }
+
+	/**
+	 * TivLevel relationsship
+	 * @return \Illuminate\Database\Eloquent\Relations\HasOne
+	 */
+    public function tiv() {
+	    return $this->hasOne('App\TivLevel');
     }
 }

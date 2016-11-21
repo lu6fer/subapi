@@ -2,83 +2,71 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use App\TivLevel;
 use Illuminate\Http\Request;
 
 class TivLevelController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  string  $slug
+	 * @return \Illuminate\Http\Response
+	 */
+	public function show($slug)
+	{
+		$user = User::where('slug', $slug)->first();
+		$tiv = $user->tiv()
+			->get();
+		return response()->json($tiv);
+	}
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @param  string $slug
+	 * @return \Illuminate\Http\Response
+	 */
+	public function store(Request $request, $slug)
+	{
+		$user = User::where('slug', $slug)->first();
+		$tivLevel = new TivLevel($request->all());
+		$tivLevel->user()->associate($user);
+		$tivLevel->save();
+		return response()->json($tivLevel);
+	}
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @param  string $slug
+	 * @param int $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function update(Request $request, $slug, $id)
+	{
+		$user = User::where('slug', $slug)->first();
+		$tivLevel = TivLevel::find($id);
+		$tivLevel->fill($request->all());
+		$tivLevel->user()->associate($user);
+		$tivLevel->save();
+		return response()->json($tivLevel);
+	}
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  string $slug
+	 * @param  int $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function destroy($slug, $id)
+	{
+		$tivLevel = TivLevel::find($id);
+		$tivLevel->delete();
+		return response()->json('tivLevel deleted');
+	}
 }

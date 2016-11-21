@@ -13,7 +13,7 @@ class Event extends Model
      */
     protected $fillable = [
         'title', 'description', 'date',
-        'max_participant', 'max_booking_date'
+        'max_participants', 'max_booking_date'
     ];
 
     /**
@@ -39,7 +39,7 @@ class Event extends Model
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function owner() {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User', 'owner');
     }
 
     /**

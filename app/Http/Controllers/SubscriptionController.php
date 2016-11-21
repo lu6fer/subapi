@@ -24,6 +24,7 @@ class SubscriptionController extends Controller
 			->with('origin')
 			->with('status')
 			->with('products')
+			->with('invoice')
 			->get();
 		return response()->json($subscription);
 	}

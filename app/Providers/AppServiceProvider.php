@@ -6,6 +6,7 @@ use App\AsacLabel;
 use App\BoatLabel;
 use App\DiveLabel;
 use App\Event;
+use App\Invoice;
 use App\Observers\InsuranceLabelObserver;
 use App\InsuranceLabel;
 use App\InvoiceStatus;
@@ -18,8 +19,10 @@ use App\Observers\EventObserver;
 use App\Observers\InvoiceStatusObserver;
 use App\Observers\MembershipOriginObserver;
 use App\Observers\ProductObserver;
+use App\Observers\SubscriptionObserver;
 use App\Observers\SubscriptionStatusObserver;
 use App\Product;
+use App\Subscription;
 use App\SubscriptionStatus;
 use App\User;
 use App\Observers\UserObserver;
@@ -44,6 +47,7 @@ class AppServiceProvider extends ServiceProvider
 	    MembershipOrigin::observe(MembershipOriginObserver::class);
 	    Product::observe(ProductObserver::class);
 	    SubscriptionStatus::observe(SubscriptionStatusObserver::class);
+	    Subscription::observe(SubscriptionObserver::class);
         User::observe(UserObserver::class);
     }
 

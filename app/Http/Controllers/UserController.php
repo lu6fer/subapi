@@ -27,10 +27,13 @@ class UserController extends Controller
 	public function show($slug)
 	{
 		$user = User::where('slug', $slug)
-			->with('membership')
-			->with('dive')
-			->with('boat')
-			->with('subscriptions')
+			->with(
+				'membership',
+				'dive',
+				'boat',
+				'subscriptions',
+				'tiv'
+			)
 			->first();
 		return response()->json($user);
 	}

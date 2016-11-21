@@ -10,26 +10,6 @@
 
 namespace App{
 /**
- * App\TivLevel
- *
- * @property integer $id
- * @property integer $user_id
- * @property string $licence
- * @property string $date
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @method static \Illuminate\Database\Query\Builder|\App\TivLevel whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\TivLevel whereUserId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\TivLevel whereLicence($value)
- * @method static \Illuminate\Database\Query\Builder|\App\TivLevel whereDate($value)
- * @method static \Illuminate\Database\Query\Builder|\App\TivLevel whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\TivLevel whereUpdatedAt($value)
- */
-	class TivLevel extends \Eloquent {}
-}
-
-namespace App{
-/**
  * App\Comment
  *
  * @property integer $id
@@ -118,26 +98,6 @@ namespace App{
 
 namespace App{
 /**
- * App\Invoice
- *
- * @property integer $id
- * @property string $invoice_number
- * @property integer $subscription_id
- * @property integer $status
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @method static \Illuminate\Database\Query\Builder|\App\Invoice whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Invoice whereInvoiceNumber($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Invoice whereSubscriptionId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Invoice whereStatus($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Invoice whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Invoice whereUpdatedAt($value)
- */
-	class Invoice extends \Eloquent {}
-}
-
-namespace App{
-/**
  * App\InvoiceStatus
  *
  * @property integer $id
@@ -174,35 +134,6 @@ namespace App{
  * @method static \Illuminate\Database\Query\Builder|\App\MembershipOrigin whereUpdatedAt($value)
  */
 	class MembershipOrigin extends \Eloquent {}
-}
-
-namespace App{
-/**
- * App\Event
- *
- * @property integer $id
- * @property string $slug
- * @property string $title
- * @property string $description
- * @property \Carbon\Carbon $date
- * @property string $max_booking_date
- * @property integer $max_participants
- * @property \App\User $owner
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\User[] $participants
- * @method static \Illuminate\Database\Query\Builder|\App\Event whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Event whereSlug($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Event whereTitle($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Event whereDescription($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Event whereDate($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Event whereMaxBookingDate($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Event whereMaxParticipants($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Event whereOwner($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Event whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Event whereUpdatedAt($value)
- */
-	class Event extends \Eloquent {}
 }
 
 namespace App{
@@ -263,86 +194,6 @@ namespace App{
  * @method static \Illuminate\Database\Query\Builder|\App\SubscriptionStatus whereUpdatedAt($value)
  */
 	class SubscriptionStatus extends \Eloquent {}
-}
-
-namespace App{
-/**
- * App\User
- *
- * @property integer $id
- * @property string $slug
- * @property string $name
- * @property string $first_name
- * @property string $email
- * @property string $street
- * @property string $city
- * @property string $zip_code
- * @property string $phone_number
- * @property string $mobile_phone
- * @property string $pro_phone
- * @property string $birthday
- * @property string $birth_city
- * @property string $birth_country
- * @property string $password
- * @property string $remember_token
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Article[] $articles
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\BoatLevel[] $boat
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Event[] $booking
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\DiveLevel[] $dive
- * @property-read \App\Membership $membership
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Event[] $organizer
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Subscription[] $subscriptions
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $readNotifications
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $unreadNotifications
- * @method static \Illuminate\Database\Query\Builder|\App\User whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereSlug($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereName($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereFirstName($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereEmail($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereStreet($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereCity($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereZipCode($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User wherePhoneNumber($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereMobilePhone($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereProPhone($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereBirthday($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereBirthCity($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereBirthCountry($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User wherePassword($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereRememberToken($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereUpdatedAt($value)
- */
-	class User extends \Eloquent {}
-}
-
-namespace App{
-/**
- * App\Subscription
- *
- * @property integer $id
- * @property integer $user_id
- * @property integer $status_id
- * @property integer $origin_id
- * @property \Carbon\Carbon $expiration_date
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @property-read \App\SubscriptionStatus $status
- * @property-read \App\User $user
- * @property-read \App\MembershipOrigin $origin
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Product[] $products
- * @method static \Illuminate\Database\Query\Builder|\App\Subscription whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Subscription whereUserId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Subscription whereStatusId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Subscription whereOriginId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Subscription whereExpirationDate($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Subscription whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Subscription whereUpdatedAt($value)
- */
-	class Subscription extends \Eloquent {}
 }
 
 namespace App{
@@ -486,5 +337,108 @@ namespace App{
  * @method static \Illuminate\Database\Query\Builder|\App\Membership whereUpdatedAt($value)
  */
 	class Membership extends \Eloquent {}
+}
+
+namespace App{
+/**
+ * App\Subscription
+ *
+ * @property integer $id
+ * @property integer $user_id
+ * @property integer $status_id
+ * @property integer $origin_id
+ * @property \Carbon\Carbon $expiration_date
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read \App\SubscriptionStatus $status
+ * @property-read \App\User $user
+ * @property-read \App\MembershipOrigin $origin
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Product[] $products
+ * @property-read \App\Invoice $invoice
+ * @method static \Illuminate\Database\Query\Builder|\App\Subscription whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Subscription whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Subscription whereStatusId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Subscription whereOriginId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Subscription whereExpirationDate($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Subscription whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Subscription whereUpdatedAt($value)
+ */
+	class Subscription extends \Eloquent {}
+}
+
+namespace App{
+/**
+ * App\TivLevel
+ *
+ * @property integer $id
+ * @property integer $user_id
+ * @property string $licence
+ * @property string $date
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read \App\User $user
+ * @method static \Illuminate\Database\Query\Builder|\App\TivLevel whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\TivLevel whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\TivLevel whereLicence($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\TivLevel whereDate($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\TivLevel whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\TivLevel whereUpdatedAt($value)
+ */
+	class TivLevel extends \Eloquent {}
+}
+
+namespace App{
+/**
+ * App\User
+ *
+ * @property integer $id
+ * @property string $slug
+ * @property string $name
+ * @property string $first_name
+ * @property string $email
+ * @property string $street
+ * @property string $city
+ * @property string $zip_code
+ * @property string $phone_number
+ * @property string $mobile_phone
+ * @property string $pro_phone
+ * @property string $birthday
+ * @property string $birth_city
+ * @property string $birth_country
+ * @property string $password
+ * @property string $remember_token
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Article[] $articles
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\BoatLevel[] $boat
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Event[] $booking
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\DiveLevel[] $dive
+ * @property-read \App\Membership $membership
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Event[] $organizer
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Subscription[] $subscriptions
+ * @property-read \App\TivLevel $tiv
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $readNotifications
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $unreadNotifications
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereSlug($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereFirstName($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereEmail($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereStreet($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereCity($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereZipCode($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User wherePhoneNumber($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereMobilePhone($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereProPhone($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereBirthday($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereBirthCity($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereBirthCountry($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User wherePassword($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereRememberToken($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereUpdatedAt($value)
+ */
+	class User extends \Eloquent {}
 }
 

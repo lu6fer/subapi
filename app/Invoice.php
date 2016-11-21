@@ -23,4 +23,20 @@ class Invoice extends Model
 	protected $guarded = [
 		'subscription_id', 'created_at', 'updated_at'
 	];
+
+	/**
+	 * Status relationship
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
+	public function invoice_status() {
+		return $this->belongsTo('App\InvoiceStatus', 'status');
+	}
+
+	/**
+	 * Subscription relationship
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
+	public function subscription() {
+		return $this->belongsTo('App\Subscription');
+	}
 }

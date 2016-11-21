@@ -62,10 +62,18 @@ class MembershipController extends Controller
 	 */
 	public function update(Request $request, $slug, $id)
 	{
-		$user = User::where('slug', $slug);
-		$membership = Membership::find($id);
+		$user = User::where('slug', $slug)->first();
+		$asac = AsacLabel::findOrFail($request->input('asac_id'));
+		$origin = MembershipOrigin::findOrFail($request->input('origin_id'));
+		$insurance = InsuranceLabel::findOrFail($request->input('insurance_id'));
+		$membership = Membership::findOrFail($id);
 		$membership->fill($request->all());
-		$user->membership()->save($membership);
+
+		$membership->user()->associate($user);
+		$membership->asac()->associate($asac);
+		$membership->origin()->associate($origin);
+		$membership->insurance()->associate($insurance);
+		$membership->save();
 		return response()->json($membership);
 	}
 

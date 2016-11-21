@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Event;
@@ -44,8 +45,10 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        $event = Event::create($request->all());
-        return response()->json($event);
+        $owner = User::findOrFail($request->input('owner'));
+	    $event = new Event($request->all());
+	    $owner->organizer()->save($event);
+	    return response()->json($event);
     }
 
     /**
@@ -57,9 +60,11 @@ class EventController extends Controller
      */
     public function update(Request $request, $slug)
     {
-        $event = Event::where('slug', $slug)->first();
-        $event->fill($request->all());
-        return response()->json($event);
+	    $owner = User::findOrFail($request->input('owner'));
+	    $event = Event::where('slug', $slug)->first();
+	    $event->fill($request->all());
+	    $owner->organizer()->save($event);
+	    return response()->json($event);
     }
 
     /**
