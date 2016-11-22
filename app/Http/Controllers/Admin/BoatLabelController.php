@@ -16,7 +16,7 @@ class BoatLabelController extends Controller
 	public function index()
 	{
 		$boatLabels = BoatLabel::all();
-		return response()->json($boatLabels);
+		return response()->success($boatLabels);
 	}
 
 	/**
@@ -28,7 +28,7 @@ class BoatLabelController extends Controller
 	public function show($slug)
 	{
 		$boatLabel = BoatLabel::where('slug', $slug)->first();
-		return response()->json($boatLabel);
+		return response()->success($boatLabel);
 	}
 
 	/**
@@ -40,7 +40,7 @@ class BoatLabelController extends Controller
 	public function store(Request $request)
 	{
 		$boatLabel = BoatLabel::create($request->all());
-		return response()->json($boatLabel);
+		return response()->success($boatLabel);
 	}
 
 	/**
@@ -55,7 +55,7 @@ class BoatLabelController extends Controller
 		$boatLabel = BoatLabel::where('slug', $slug)->first();
 		$boatLabel->fill($request->all());
 		$boatLabel->save();
-		return response()->json($boatLabel);
+		return response()->success($boatLabel);
 	}
 
 	/**
@@ -68,6 +68,6 @@ class BoatLabelController extends Controller
 	{
 		$boatLabel = BoatLabel::where('slug', $slug)->first();
 		$boatLabel->delete();
-		return response()->json('boatLabel deleted');
+		return response()->success('boatLabel deleted');
 	}
 }

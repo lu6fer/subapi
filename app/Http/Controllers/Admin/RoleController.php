@@ -16,7 +16,7 @@ class RoleController extends Controller
 	public function index()
 	{
 		$roles = Role::all();
-		return response()->json($roles);
+		return response()->success($roles);
 	}
 
 	/**
@@ -30,7 +30,7 @@ class RoleController extends Controller
 		$role = Role::where('slug', $slug)
 			->with('users')
 			->first();
-		return response()->json($role);
+		return response()->success($role);
 	}
 
 	/**
@@ -42,7 +42,7 @@ class RoleController extends Controller
 	public function store(Request $request)
 	{
 		$role = Role::create($request->all());
-		return response()->json($role);
+		return response()->success($role);
 	}
 
 	/**
@@ -57,7 +57,7 @@ class RoleController extends Controller
 		$role = Role::where('slug', $slug)->first();
 		$role->fill($request->all());
 		$role->save();
-		return response()->json($role);
+		return response()->success($role);
 	}
 
 	/**
@@ -70,6 +70,6 @@ class RoleController extends Controller
 	{
 		$role = Role::where('slug', $slug)->first();
 		$role->delete();
-		return response()->json('role deleted');
+		return response()->success('role deleted');
 	}
 }

@@ -20,7 +20,7 @@ class EventController extends Controller
         $events = Event::where('date', '>', Carbon::now())
 	        ->with('owner')
 	        ->get();
-        return response()->json($events);
+        return response()->success($events);
     }
 
     /**
@@ -35,7 +35,7 @@ class EventController extends Controller
             ->with('owner')
             ->with('participants')
             ->first();
-        return response()->json($event);
+        return response()->success($event);
     }
 
     /**
@@ -49,7 +49,7 @@ class EventController extends Controller
         $owner = User::findOrFail($request->input('owner'));
 	    $event = new Event($request->all());
 	    $owner->organizer()->save($event);
-	    return response()->json($event);
+	    return response()->success($event);
     }
 
     /**
@@ -65,7 +65,7 @@ class EventController extends Controller
 	    $event = Event::where('slug', $slug)->first();
 	    $event->fill($request->all());
 	    $owner->organizer()->save($event);
-	    return response()->json($event);
+	    return response()->success($event);
     }
 
     /**
@@ -78,6 +78,6 @@ class EventController extends Controller
     {
         $event = Event::where('slug', $slug)->first();
         $event->delete();
-        return response()->json('event deleted');
+        return response()->success('event deleted');
     }
 }

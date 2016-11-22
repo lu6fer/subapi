@@ -17,7 +17,7 @@ class ProductController extends Controller
     {
         $products = Product::whereNull('parent_product')
 	        ->get();
-	    return response()->json($products);
+	    return response()->success($products);
     }
 
 	/**
@@ -31,7 +31,7 @@ class ProductController extends Controller
 		$product = Product::where('slug', $slug)
 			->with('children')
 			->get();
-		return response()->json($product);
+		return response()->success($product);
 	}
 
     /**
@@ -53,7 +53,7 @@ class ProductController extends Controller
 			    $product = $parent->children()->create($request->all());
 		    }
 	    }
-	    return response()->json($product);
+	    return response()->success($product);
     }
 
     /**
@@ -68,7 +68,7 @@ class ProductController extends Controller
 	    $product = Product::where('slug', $slug)->first();
 	    $product->fill($request->all());
 	    $product->save();
-	    return response()->json($product);
+	    return response()->success($product);
     }
 
     /**
@@ -81,6 +81,6 @@ class ProductController extends Controller
     {
 	    $product = Product::where('slug', $slug)->first();
 	    $product->delete();
-	    return response()->json('product deleted');
+	    return response()->success('product deleted');
     }
 }

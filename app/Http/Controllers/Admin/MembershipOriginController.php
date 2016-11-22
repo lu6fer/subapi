@@ -16,7 +16,7 @@ class MembershipOriginController extends Controller
 	public function index()
 	{
 		$membershipOrigins = MembershipOrigin::all();
-		return response()->json($membershipOrigins);
+		return response()->success($membershipOrigins);
 	}
 
 	/**
@@ -28,7 +28,7 @@ class MembershipOriginController extends Controller
 	public function show($slug)
 	{
 		$membershipOrigin = MembershipOrigin::where('slug', $slug)->first();
-		return response()->json($membershipOrigin);
+		return response()->success($membershipOrigin);
 	}
 
 	/**
@@ -40,7 +40,7 @@ class MembershipOriginController extends Controller
 	public function store(Request $request)
 	{
 		$membershipOrigin = MembershipOrigin::create($request->all());
-		return response()->json($membershipOrigin);
+		return response()->success($membershipOrigin);
 	}
 
 	/**
@@ -55,7 +55,7 @@ class MembershipOriginController extends Controller
 		$membershipOrigin = MembershipOrigin::where('slug', $slug)->first();
 		$membershipOrigin->fill($request->all());
 		$membershipOrigin->save();
-		return response()->json($membershipOrigin);
+		return response()->success($membershipOrigin);
 	}
 
 	/**
@@ -68,6 +68,6 @@ class MembershipOriginController extends Controller
 	{
 		$membershipOrigin = MembershipOrigin::where('slug', $slug)->first();
 		$membershipOrigin->delete();
-		return response()->json('membershipOrigin deleted');
+		return response()->success('membershipOrigin deleted');
 	}
 }

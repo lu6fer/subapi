@@ -20,7 +20,7 @@ class TivLevelController extends Controller
 		$user = User::where('slug', $slug)->first();
 		$tiv = $user->tiv()
 			->get();
-		return response()->json($tiv);
+		return response()->success($tiv);
 	}
 
 	/**
@@ -36,7 +36,7 @@ class TivLevelController extends Controller
 		$tivLevel = new TivLevel($request->all());
 		$tivLevel->user()->associate($user);
 		$tivLevel->save();
-		return response()->json($tivLevel);
+		return response()->success($tivLevel);
 	}
 
 	/**
@@ -54,7 +54,7 @@ class TivLevelController extends Controller
 		$tivLevel->fill($request->all());
 		$tivLevel->user()->associate($user);
 		$tivLevel->save();
-		return response()->json($tivLevel);
+		return response()->success($tivLevel);
 	}
 
 	/**
@@ -68,6 +68,6 @@ class TivLevelController extends Controller
 	{
 		$tivLevel = TivLevel::find($id);
 		$tivLevel->delete();
-		return response()->json('tivLevel deleted');
+		return response()->success('tivLevel deleted');
 	}
 }

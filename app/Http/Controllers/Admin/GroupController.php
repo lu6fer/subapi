@@ -16,7 +16,7 @@ class GroupController extends Controller
 	public function index()
 	{
 		$groups = Group::all();
-		return response()->json($groups);
+		return response()->success($groups);
 	}
 
 	/**
@@ -30,7 +30,7 @@ class GroupController extends Controller
 		$group = Group::where('slug', $slug)
 			->with('users')
 			->first();
-		return response()->json($group);
+		return response()->success($group);
 	}
 
 	/**
@@ -42,7 +42,7 @@ class GroupController extends Controller
 	public function store(Request $request)
 	{
 		$group = Group::create($request->all());
-		return response()->json($group);
+		return response()->success($group);
 	}
 
 	/**
@@ -57,7 +57,7 @@ class GroupController extends Controller
 		$group = Group::where('slug', $slug)->first();
 		$group->fill($request->all());
 		$group->save();
-		return response()->json($group);
+		return response()->success($group);
 	}
 
 	/**
@@ -70,6 +70,6 @@ class GroupController extends Controller
 	{
 		$group = Group::where('slug', $slug)->first();
 		$group->delete();
-		return response()->json('group deleted');
+		return response()->success('group deleted');
 	}
 }

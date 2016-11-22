@@ -18,7 +18,7 @@ use Illuminate\Http\Request;
 })->middleware('auth:api');*/
 
 Route::group([
-	'prefix' => '/v1'
+	'prefix' => '/v1',
 ], function(){
 	/*
 	|--------------------------------------------------------------------------

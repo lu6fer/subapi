@@ -16,7 +16,7 @@ class InvoiceStatusController extends Controller
 	public function index()
 	{
 		$invoiceStatuss = InvoiceStatus::all();
-		return response()->json($invoiceStatuss);
+		return response()->success($invoiceStatuss);
 	}
 
 	/**
@@ -28,7 +28,7 @@ class InvoiceStatusController extends Controller
 	public function show($slug)
 	{
 		$invoiceStatus = InvoiceStatus::where('slug', $slug)->first();
-		return response()->json($invoiceStatus);
+		return response()->success($invoiceStatus);
 	}
 
 	/**
@@ -40,7 +40,7 @@ class InvoiceStatusController extends Controller
 	public function store(Request $request)
 	{
 		$invoiceStatus = InvoiceStatus::create($request->all());
-		return response()->json($invoiceStatus);
+		return response()->success($invoiceStatus);
 	}
 
 	/**
@@ -54,7 +54,7 @@ class InvoiceStatusController extends Controller
 	{
 		$invoiceStatus = InvoiceStatus::where('slug', $slug)->first();
 		$invoiceStatus->fill($request->all());
-		return response()->json($invoiceStatus);
+		return response()->success($invoiceStatus);
 	}
 
 	/**
@@ -67,6 +67,6 @@ class InvoiceStatusController extends Controller
 	{
 		$invoiceStatus = InvoiceStatus::where('slug', $slug)->first();
 		$invoiceStatus->delete();
-		return response()->json('invoiceStatus deleted');
+		return response()->success('invoiceStatus deleted');
 	}
 }

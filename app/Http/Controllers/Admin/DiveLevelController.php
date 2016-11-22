@@ -22,7 +22,7 @@ class DiveLevelController extends Controller
         $dive = $user->dive()
             ->with('label')
             ->get();
-        return response()->json($dive);
+        return response()->success($dive);
     }
 
     /**
@@ -40,7 +40,7 @@ class DiveLevelController extends Controller
         $diveLevel->user()->associate($user);
         $diveLevel->label()->associate($label);
         $diveLevel->save();
-        return response()->json($diveLevel);
+        return response()->success($diveLevel);
     }
 
     /**
@@ -60,7 +60,7 @@ class DiveLevelController extends Controller
         $diveLevel->label()->associate($label);
         $diveLevel->user()->associate($user);
         $diveLevel->save();
-        return response()->json($diveLevel);
+        return response()->success($diveLevel);
     }
 
     /**
@@ -74,6 +74,6 @@ class DiveLevelController extends Controller
     {
         $diveLevel = DiveLevel::find($id);
         $diveLevel->delete();
-        return response()->json('diveLevel deleted');
+        return response()->success('diveLevel deleted');
     }
 }

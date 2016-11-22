@@ -20,7 +20,7 @@ class ArticleController extends Controller
 		{
 			$q->select('id', 'name', 'first_name');
 		}])->get();
-		return response()->json($articles);
+		return response()->success($articles);
 	}
 
 	/**
@@ -38,7 +38,7 @@ class ArticleController extends Controller
 			}])
 			->with('comments')
 			->first();
-		return response()->json($article);
+        return response()->success($article);
 	}
 
 	/**
@@ -54,7 +54,7 @@ class ArticleController extends Controller
 		$article->user()->associate($user);
 		$article->save();
 		//$user->articles()->save($article);
-		return response()->json($article);
+		return response()->success($article);
 	}
 
 	/**
@@ -68,7 +68,7 @@ class ArticleController extends Controller
 	{
 		$article = Article::where('slug', $slug)->first();
 		$article->fill($request->all());
-		return response()->json($article);
+		return response()->success($article);
 	}
 
 	/**
@@ -81,6 +81,6 @@ class ArticleController extends Controller
 	{
 		$article = Article::where('slug', $slug)->first();
 		$article->delete();
-		return response()->json('article deleted');
+		return response()->success('article deleted');
 	}
 }

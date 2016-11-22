@@ -16,7 +16,7 @@ class SubscriptionStatusController extends Controller
 	public function index()
 	{
 		$subscriptionStatuss = SubscriptionStatus::all();
-		return response()->json($subscriptionStatuss);
+		return response()->success($subscriptionStatuss);
 	}
 
 	/**
@@ -28,7 +28,7 @@ class SubscriptionStatusController extends Controller
 	public function show($slug)
 	{
 		$subscriptionStatus = SubscriptionStatus::where('slug', $slug)->first();
-		return response()->json($subscriptionStatus);
+		return response()->success($subscriptionStatus);
 	}
 
 	/**
@@ -40,7 +40,7 @@ class SubscriptionStatusController extends Controller
 	public function store(Request $request)
 	{
 		$subscriptionStatus = SubscriptionStatus::create($request->all());
-		return response()->json($subscriptionStatus);
+		return response()->success($subscriptionStatus);
 	}
 
 	/**
@@ -55,7 +55,7 @@ class SubscriptionStatusController extends Controller
 		$subscriptionStatus = SubscriptionStatus::where('slug', $slug)->first();
 		$subscriptionStatus->fill($request->all());
 		$subscriptionStatus->save();
-		return response()->json($subscriptionStatus);
+		return response()->success($subscriptionStatus);
 	}
 
 	/**
@@ -68,6 +68,6 @@ class SubscriptionStatusController extends Controller
 	{
 		$subscriptionStatus = SubscriptionStatus::where('slug', $slug)->first();
 		$subscriptionStatus->delete();
-		return response()->json('subscriptionStatus deleted');
+		return response()->success('subscriptionStatus deleted');
 	}
 }

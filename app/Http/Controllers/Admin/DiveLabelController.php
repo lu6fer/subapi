@@ -16,7 +16,7 @@ class DiveLabelController extends Controller
 	public function index()
 	{
 		$diveLabels = DiveLabel::all();
-		return response()->json($diveLabels);
+		return response()->success($diveLabels);
 	}
 
 	/**
@@ -28,7 +28,7 @@ class DiveLabelController extends Controller
 	public function show($slug)
 	{
 		$diveLabel = DiveLabel::where('slug', $slug)->first();
-		return response()->json($diveLabel);
+		return response()->success($diveLabel);
 	}
 
 	/**
@@ -40,7 +40,7 @@ class DiveLabelController extends Controller
 	public function store(Request $request)
 	{
 		$diveLabel = DiveLabel::create($request->all());
-		return response()->json($diveLabel);
+		return response()->success($diveLabel);
 	}
 
 	/**
@@ -55,7 +55,7 @@ class DiveLabelController extends Controller
 		$diveLabel = DiveLabel::where('slug', $slug)->first();
 		$diveLabel->fill($request->all());
 		$diveLabel->save();
-		return response()->json($diveLabel);
+		return response()->success($diveLabel);
 	}
 
 	/**
@@ -68,6 +68,6 @@ class DiveLabelController extends Controller
 	{
 		$diveLabel = DiveLabel::where('slug', $slug)->first();
 		$diveLabel->delete();
-		return response()->json('diveLabel deleted');
+		return response()->success('diveLabel deleted');
 	}
 }

@@ -16,7 +16,7 @@ class AsacLabelController extends Controller
 	public function index()
 	{
 		$asacLabels = AsacLabel::all();
-		return response()->json($asacLabels);
+		return response()->success($asacLabels);
 	}
 
 	/**
@@ -28,7 +28,7 @@ class AsacLabelController extends Controller
 	public function show($slug)
 	{
 		$asacLabel = AsacLabel::where('slug', $slug)->first();
-		return response()->json($asacLabel);
+		return response()->success($asacLabel);
 	}
 
 	/**
@@ -40,7 +40,7 @@ class AsacLabelController extends Controller
 	public function store(Request $request)
 	{
 		$asacLabel = AsacLabel::create($request->all());
-		return response()->json($asacLabel);
+		return response()->success($asacLabel);
 	}
 
 	/**
@@ -55,7 +55,7 @@ class AsacLabelController extends Controller
 		$asacLabel = AsacLabel::where('slug', $slug)->first();
 		$asacLabel->fill($request->all());
 		$asacLabel->save();
-		return response()->json($asacLabel);
+		return response()->success($asacLabel);
 	}
 
 	/**
@@ -68,6 +68,6 @@ class AsacLabelController extends Controller
 	{
 		$asacLabel = AsacLabel::where('slug', $slug)->first();
 		$asacLabel->delete();
-		return response()->json('aAsacLabel deleted');
+		return response()->success('aAsacLabel deleted');
 	}
 }

@@ -16,7 +16,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-	    return response()->json($users);
+	    return response()->success($users);
     }
 
 	/**
@@ -38,7 +38,7 @@ class UserController extends Controller
 				'groups'
 			)
 			->first();
-		return response()->json($user);
+		return response()->success($user);
 	}
 
     /**
@@ -50,7 +50,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
 		$user = User::create($request->all());
-	    return response()->json($user);
+	    return response()->success($user);
     }
 
     /**
@@ -64,7 +64,7 @@ class UserController extends Controller
     {
         $user = User::where('slug', $slug)->first();
 	    $user->fill($request->all());
-	    return response()->json($user);
+	    return response()->success($user);
     }
 
     /**
@@ -77,6 +77,6 @@ class UserController extends Controller
     {
 	    $user = User::where('slug', $slug)->first();
 	    $user->delete();
-	    return response()->json('user deleted');
+	    return response()->success('user deleted');
     }
 }

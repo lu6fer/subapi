@@ -27,7 +27,7 @@ class MembershipController extends Controller
 			->with('asac')
 			->with('insurance')
 			->get();
-		return response()->json($membership);
+		return response()->success($membership);
 	}
 
 	/**
@@ -50,7 +50,7 @@ class MembershipController extends Controller
 		$membership->origin()->associate($origin);
 		$membership->insurance()->associate($insurance);
 		$membership->save();
-		return response()->json($membership);
+		return response()->success($membership);
 	}
 
 	/**
@@ -75,7 +75,7 @@ class MembershipController extends Controller
 		$membership->origin()->associate($origin);
 		$membership->insurance()->associate($insurance);
 		$membership->save();
-		return response()->json($membership);
+		return response()->success($membership);
 	}
 
 	/**
@@ -89,6 +89,6 @@ class MembershipController extends Controller
 	{
 		$membership = Membership::findOrFail($id);
 		$membership->delete();
-		return response()->json('membership deleted');
+		return response()->success('membership deleted');
 	}
 }

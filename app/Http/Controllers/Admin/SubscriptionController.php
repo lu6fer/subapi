@@ -27,7 +27,7 @@ class SubscriptionController extends Controller
 			->with('products')
 			->with('invoice')
 			->get();
-		return response()->json($subscription);
+		return response()->success($subscription);
 	}
 
 	/**
@@ -49,7 +49,7 @@ class SubscriptionController extends Controller
 		$subscription->user()->associate($user);
 		$subscription->save();
 		//$subscription = $user->subscriptions()->create($request->all());
-		return response()->json($subscription);
+		return response()->success($subscription);
 	}
 
 	/**
@@ -72,7 +72,7 @@ class SubscriptionController extends Controller
 		$subscription->status()->associate($status);
 		$subscription->user()->associate($user);
 		$subscription->save();
-		return response()->json($subscription);
+		return response()->success($subscription);
 	}
 
 	/**
@@ -86,6 +86,6 @@ class SubscriptionController extends Controller
 	{
 		$subscription = Subscription::findOrFail($id);
 		$subscription->delete();
-		return response()->json('subscription deleted');
+		return response()->success('subscription deleted');
 	}
 }

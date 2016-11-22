@@ -22,7 +22,7 @@ class BoatLevelController extends Controller
 		$boat = $user->boat()
 			->with('label')
 			->get();
-		return response()->json($boat);
+		return response()->success($boat);
 	}
 
 	/**
@@ -40,7 +40,7 @@ class BoatLevelController extends Controller
 		$boatLevel->user()->associate($user);
 		$boatLevel->label()->associate($label);
 		$boatLevel->save();
-		return response()->json($boatLevel);
+		return response()->success($boatLevel);
 	}
 
 	/**
@@ -60,7 +60,7 @@ class BoatLevelController extends Controller
 		$boatLevel->label()->associate($label);
 		$boatLevel->user()->associate($user);
 		$boatLevel->save();
-		return response()->json($boatLevel);
+		return response()->success($boatLevel);
 	}
 
 	/**
@@ -74,6 +74,6 @@ class BoatLevelController extends Controller
 	{
 		$boatLevel = BoatLevel::find($id);
 		$boatLevel->delete();
-		return response()->json('boatLevel deleted');
+		return response()->success('boatLevel deleted');
 	}
 }

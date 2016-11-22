@@ -26,7 +26,7 @@ class CommentController extends Controller
 					$q->select('id', 'name', 'first_name');
 				}])
 			->get();
-		return response()->json($comments);
+		return response()->success($comments);
 	}
 
     /**
@@ -44,7 +44,7 @@ class CommentController extends Controller
 	    $comment->user()->associate($user);
 	    $comment->article()->associate($article);
 	    $comment->save();
-	    return response()->json($comment);
+	    return response()->success($comment);
     }
 
     /**
@@ -64,7 +64,7 @@ class CommentController extends Controller
 	    $comment->user()->associate($user);
 	    $comment->article()->associate($article);
 	    $comment->save();
-	    return response()->json($comment);
+	    return response()->success($comment);
     }
 
     /**
@@ -78,6 +78,6 @@ class CommentController extends Controller
     {
 	    $comment = Comment::find($id);
 	    $comment->delete();
-	    return response()->json('comment deleted');
+	    return response()->success('comment deleted');
     }
 }

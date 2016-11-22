@@ -16,7 +16,7 @@ class InsuranceLabelController extends Controller
 	public function index()
 	{
 		$insuranceLabels = InsuranceLabel::all();
-		return response()->json($insuranceLabels);
+		return response()->success($insuranceLabels);
 	}
 
 	/**
@@ -28,7 +28,7 @@ class InsuranceLabelController extends Controller
 	public function show($slug)
 	{
 		$insuranceLabel = InsuranceLabel::where('slug', $slug)->first();
-		return response()->json($insuranceLabel);
+		return response()->success($insuranceLabel);
 	}
 
 	/**
@@ -40,7 +40,7 @@ class InsuranceLabelController extends Controller
 	public function store(Request $request)
 	{
 		$insuranceLabel = InsuranceLabel::create($request->all());
-		return response()->json($insuranceLabel);
+		return response()->success($insuranceLabel);
 	}
 
 	/**
@@ -55,7 +55,7 @@ class InsuranceLabelController extends Controller
 		$insuranceLabel = InsuranceLabel::where('slug', $slug)->first();
 		$insuranceLabel->fill($request->all());
 		$insuranceLabel->save();
-		return response()->json($insuranceLabel);
+		return response()->success($insuranceLabel);
 	}
 
 	/**
@@ -68,6 +68,6 @@ class InsuranceLabelController extends Controller
 	{
 		$insuranceLabel = InsuranceLabel::where('slug', $slug)->first();
 		$insuranceLabel->delete();
-		return response()->json('insuranceLabel deleted');
+		return response()->success('insuranceLabel deleted');
 	}
 }
