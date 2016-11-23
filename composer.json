@@ -9,7 +9,9 @@
         "laravel/framework": "5.3.*",
         "webpatser/laravel-uuid": "2.*",
         "tymon/jwt-auth": "0.5.*",
-        "watson/validating": "^3.0"
+        "watson/validating": "^3.0",
+        "caouecs/laravel-lang": "~3.0",
+        "propaganistas/laravel-phone": "^2.8"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

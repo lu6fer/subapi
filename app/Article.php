@@ -8,6 +8,14 @@ use Watson\Validating\ValidatingTrait;
 class Article extends Model
 {
 	use ValidatingTrait;
+	/*
+    |--------------------------------------------------------------------------
+    | Model fields
+    |--------------------------------------------------------------------------
+    |
+	| Fields configurations
+    |
+    */
 	/**
 	 * The attributes that are mass assignable.
 	 *
@@ -34,30 +42,46 @@ class Article extends Model
 		'created_at', 'updated_at'
 	];
 
+	/*
+    |--------------------------------------------------------------------------
+    | Model validations
+    |--------------------------------------------------------------------------
+    |
+	| Fields validations rules and model validation behavior
+    |
+    */
+
+	/**
+	 * Observable validation event
+	 * @var array
+	 */
+	protected $observables = ['validating', 'validated'];
+
+	/**
+	 * Always throw exceptions on validation error
+	 * @var bool
+	 */
+	protected $throwValidationExceptions = true;
+
 	/**
 	 * Model validation rules
 	 *
 	 * @var array
 	 */
 	protected $rules = [
-		'title' => 'required|alpha_dash',
+		'title' => 'required|text',
 		'body' => 'required',
-		'slug' => 'required|unique:article,slug'
+		'slug' => 'required|unique:articles,slug'
 	];
 
-	/**
-	 * Validation messages to be passed to the validator.
-	 *
-	 * @var array
-	 */
-	protected $validationMessages = [
-		'title.required' => 'title is required',
-		'body.required' => 'article is required',
-		'slug.unique' => 'This title is already use'
-	];
-
-	protected $throwValidationExceptions = true;
-
+	/*
+    |--------------------------------------------------------------------------
+    | Model relationship
+    |--------------------------------------------------------------------------
+    |
+	| Methods defining model relationship
+    |
+    */
 	/**
 	 * User relationship
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

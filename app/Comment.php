@@ -3,9 +3,19 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Watson\Validating\ValidatingTrait;
 
 class Comment extends Model
 {
+	use ValidatingTrait;
+	/*
+    |--------------------------------------------------------------------------
+    | Model fields
+    |--------------------------------------------------------------------------
+    |
+	| Fields configurations
+    |
+    */
 	/**
 	 * The attributes that are mass assignable.
 	 *
@@ -21,7 +31,7 @@ class Comment extends Model
 	 * @var array
 	 */
 	protected $guarded = [
-		'created_at', 'updated_at'
+		'user_id', 'created_at', 'updated_at'
 	];
 
 	/**
@@ -31,6 +41,45 @@ class Comment extends Model
 	protected $dates = [
 		'created_at', 'updated_at'
 	];
+
+	/*
+    |--------------------------------------------------------------------------
+    | Model validations
+    |--------------------------------------------------------------------------
+    |
+	| Fields validations rules and model validation behavior
+    |
+    */
+
+	/**
+	 * Observable validation event
+	 * @var array
+	 */
+	protected $observables = ['validating', 'validated'];
+
+	/**
+	 * Always throw exceptions on validation error
+	 * @var bool
+	 */
+	protected $throwValidationExceptions = true;
+
+	/**
+	 * Model validation rules
+	 *
+	 * @var array
+	 */
+	protected $rules = [
+		'body' => 'required'
+	];
+
+	/*
+    |--------------------------------------------------------------------------
+    | Model relationship
+    |--------------------------------------------------------------------------
+    |
+	| Methods defining model relationship
+    |
+    */
 
 	/**
 	 * User relationship

@@ -37,6 +37,10 @@ class ArticleController extends Controller
 				$q->select('id', 'name', 'first_name');
 			}])
 			->with('comments')
+			->with(['comments.user' => function($q)
+			{
+				$q->select('id', 'name', 'first_name');
+			}])
 			->first();
         return response()->success($article);
 	}

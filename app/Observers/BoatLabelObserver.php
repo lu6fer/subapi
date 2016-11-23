@@ -8,7 +8,18 @@ use Illuminate\Support\Str;
 class BoatLabelObserver
 {
 	/**
-	 * Listen to the Article saving event.
+	 * Listen to the BoatLabel validating event.
+	 *
+	 * @param  BoatLabel $boatLabel
+	 * @return void
+	 */
+	public function validating(BoatLabel $boatLabel)
+	{
+		$boatLabel->slug = Str::slug($boatLabel->name);
+	}
+
+	/**
+	 * Listen to the BoatLabel saving event.
 	 *
 	 * @param  BoatLabel $boatLabel
 	 * @return void
