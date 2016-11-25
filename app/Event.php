@@ -3,9 +3,19 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Watson\Validating\ValidatingTrait;
 
 class Event extends Model
 {
+	use ValidatingTrait;
+	/*
+    |--------------------------------------------------------------------------
+    | Model fields
+    |--------------------------------------------------------------------------
+    |
+	| Fields configurations
+    |
+    */
     /**
      * The attributes that are mass assignable.
      *
@@ -32,6 +42,50 @@ class Event extends Model
     protected $dates = [
         'date', 'created_at', 'updated_at'
     ];
+
+	/*
+    |--------------------------------------------------------------------------
+    | Model validations
+    |--------------------------------------------------------------------------
+    |
+	| Fields validations rules and model validation behavior
+    |
+    */
+
+	/**
+	 * Observable validation event
+	 * @var array
+	 */
+	protected $observables = ['validating', 'validated'];
+
+	/**
+	 * Always throw exceptions on validation error
+	 * @var bool
+	 */
+	protected $throwValidationExceptions = true;
+
+	/**
+	 * Model validation rules
+	 *
+	 * @var array
+	 */
+	protected $rules = [
+		'title' => 'required|text',
+		'description' => 'text',
+		'date' => 'required|date',
+		'max_participants' => 'required|numeric',
+		'max_booking_date' => 'required|date',
+		'slug' => 'required|unique:articles,slug'
+	];
+
+	/*
+    |--------------------------------------------------------------------------
+    | Model relationship
+    |--------------------------------------------------------------------------
+    |
+	| Methods defining model relationship
+    |
+    */
 
 
     /**

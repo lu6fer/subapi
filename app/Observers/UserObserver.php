@@ -8,6 +8,17 @@ use Illuminate\Support\Str;
 class UserObserver
 {
 	/**
+	 * Listen to the User validating event.
+	 *
+	 * @param  User  $user
+	 * @return void
+	 */
+	public function validating(User $user)
+	{
+		$user->slug = Str::slug($user->first_name.' '.$user->name);
+	}
+
+	/**
 	 * Listen to the User saving event.
 	 *
 	 * @param  User  $user

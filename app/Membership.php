@@ -3,9 +3,19 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Watson\Validating\ValidatingTrait;
 
 class Membership extends Model
 {
+	use ValidatingTrait;
+	/*
+    |--------------------------------------------------------------------------
+    | Model fields
+    |--------------------------------------------------------------------------
+    |
+	| Fields configurations
+    |
+    */
 	/**
 	 * The attributes that are mass assignable.
 	 *
@@ -35,6 +45,55 @@ class Membership extends Model
 	protected $dates = [
 		'date', 'certificat_date', 'created_at', 'updated_at'
 	];
+	/*
+    |--------------------------------------------------------------------------
+    | Model validations
+    |--------------------------------------------------------------------------
+    |
+	| Fields validations rules and model validation behavior
+    |
+    */
+
+	/**
+	 * Observable validation event
+	 * @var array
+	 */
+	protected $observables = ['validating', 'validated'];
+
+	/**
+	 * Always throw exceptions on validation error
+	 * @var bool"asa
+	 */
+	protected $throwValidationExceptions = true;
+
+	/**
+	 * Model validation rules
+	 *
+	 * @var array
+	 */
+	protected $rules = [
+		'licence' => 'required|licence',
+		'date' => 'required|date',
+		'magazine' => 'required|boolean',
+		'tank' => 'required|boolean',
+		'regulator' => 'required|boolean',
+		'supervisor' => 'required|boolean',
+		'pool_lannion' => 'required|boolean',
+		'free_pool' => 'required|boolean',
+		'pool_trestel' => 'required|boolean',
+		'local_access' => 'required|boolean',
+		'certificat' => 'text',
+		'certificat_date' => 'required_with:certificat|date'
+	];
+
+	/*
+    |--------------------------------------------------------------------------
+    | Model relationship
+    |--------------------------------------------------------------------------
+    |
+	| Methods defining model relationship
+    |
+    */
 
 	/**
 	 * User relationship

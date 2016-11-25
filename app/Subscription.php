@@ -3,9 +3,19 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Watson\Validating\ValidatingTrait;
 
 class Subscription extends Model
 {
+	use ValidatingTrait;
+	/*
+    |--------------------------------------------------------------------------
+    | Model fields
+    |--------------------------------------------------------------------------
+    |
+	| Fields configurations
+    |
+    */
 	/**
 	 * The attributes that are mass assignable.
 	 *
@@ -31,6 +41,45 @@ class Subscription extends Model
 	protected $dates = [
 		'expiration_date', 'created_at', 'updated_at'
 	];
+
+	/*
+    |--------------------------------------------------------------------------
+    | Model validations
+    |--------------------------------------------------------------------------
+    |
+	| Fields validations rules and model validation behavior
+    |
+    */
+
+	/**
+	 * Observable validation event
+	 * @var array
+	 */
+	protected $observables = ['validating', 'validated'];
+
+	/**
+	 * Always throw exceptions on validation error
+	 * @var bool
+	 */
+	protected $throwValidationExceptions = true;
+
+	/**
+	 * Model validation rules
+	 *
+	 * @var array
+	 */
+	protected $rules = [
+		'expiration_date' => 'required|date'
+	];
+
+	/*
+    |--------------------------------------------------------------------------
+    | Model relationship
+    |--------------------------------------------------------------------------
+    |
+	| Methods defining model relationship
+    |
+    */
 
 	/**
 	 * Subscription status relationship

@@ -67,6 +67,19 @@ class AppServiceProvider extends ServiceProvider
 		    return preg_match('/^[\pL\pN\s_-]+$/u', $value);
 
 	    });
+
+	    Validator::extend('address', function ($attribute, $value) {
+
+		    // This will only accept alpha, numeric, spaces, _, -, ', and ,
+		    return preg_match('/^[-_\',\pL\pN\s]+$/u', $value);
+
+	    });
+	    Validator::extend('licence', function ($attribute, $value) {
+
+		    // This will only accept alpha, numeric, / and -
+		    return preg_match('/^[-\/\pN\pL]+$/u', $value);
+
+	    });
     }
 
     /**
