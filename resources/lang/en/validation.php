@@ -14,6 +14,7 @@ return [
     */
 
     'accepted'             => 'The :attribute must be accepted.',
+    'address'              => 'The :attribute may only contain letters, numbers, dashes, hyphens, quotes, parenthesis and spaces',
     'active_url'           => 'The :attribute is not a valid URL.',
     'after'                => 'The :attribute must be a date after :date.',
     'alpha'                => 'The :attribute may only contain letters.',

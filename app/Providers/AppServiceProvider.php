@@ -70,8 +70,8 @@ class AppServiceProvider extends ServiceProvider
 
 	    Validator::extend('address', function ($attribute, $value) {
 
-		    // This will only accept alpha, numeric, spaces, _, -, ', and ,
-		    return preg_match('/^[-_\',\pL\pN\s]+$/u', $value);
+		    // This will only accept alpha, numeric, spaces, _, -, ', ), (, and ,
+		    return preg_match('/^[-_\',)(\pL\pN\s\.]+$/u', $value);
 
 	    });
 	    Validator::extend('licence', function ($attribute, $value) {

@@ -22,9 +22,9 @@ class CreateUsersTable extends Migration
 	        $table->string('street');
 	        $table->string('city');
 	        $table->string('zip_code');
-	        $table->string('phone_number');
-	        $table->string('mobile_phone');
-	        $table->string('pro_phone');
+	        $table->string('phone_number')->nullable();
+	        $table->string('mobile_phone')->nullable();
+	        $table->string('pro_phone')->nullable();
 	        $table->date('birthday');
 	        $table->string('birth_city');
 	        $table->string('birth_country');

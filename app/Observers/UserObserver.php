@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\User;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 
 class UserObserver
 {
@@ -16,6 +17,7 @@ class UserObserver
 	public function validating(User $user)
 	{
 		$user->slug = Str::slug($user->first_name.' '.$user->name);
+		$user->zip_code = str_replace(' ', '', $user->zip_code);
 	}
 
 	/**

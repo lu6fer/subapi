@@ -75,17 +75,17 @@ class User extends Authenticatable
 	 * @var array
 	 */
 	protected $rules = [
-		'name' => 'required|alpha_dash',
+		'name' => 'required|text',
 		'first_name' => 'required|alpha_dash',
 		'email' => 'required|email',
 		'street' => 'required|address',
-		'city' => 'required|alpha_dash',
+		'city' => 'required|address',
 		'zip_code' => 'required|digits:5',
-		'phone_number' => 'required_without:mobile_phone,pro_phone|phone:AUTO,FR',
-		'mobile_phone' => 'required_without:phone_number,pro_phone|phone:AUTO,FR',
-		'pro_phone' => 'required_without:mobile_phone,phone_number|phone:AUTO,FR',
-		'birth_city' => 'required|alpha_dash',
-		'birth_country' => 'required|alpha_dash',
+		'phone_number' => 'required_without_all:mobile_phone,pro_phone|phone:AUTO,FR',
+		'mobile_phone' => 'required_without_all:phone_number,pro_phone|phone:AUTO,FR',
+		'pro_phone' => 'required_without_all:mobile_phone,phone_number|phone:AUTO,FR',
+		'birth_city' => 'required|address',
+		'birth_country' => 'required|address',
 		'birthday' => 'required|date',
 		'slug' => 'required|unique:users,slug'
 	];

@@ -18,12 +18,13 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 	$lastName = $faker->lastName;
 	$firstName = $faker->firstName;
 
-	return [
+
+	$user = [
 		'slug' => Str::slug($firstName.' '.$lastName),
 		'name' => $lastName,
 		'first_name' => $firstName,
 		'email' => $faker->unique()->safeEmail,
-		'street' => $faker->address,
+		'street' => $faker->streetAddress,
 		'city' => $faker->city,
 		'zip_code' => $faker->postcode,
 		'phone_number' => $faker->phoneNumber,
@@ -35,4 +36,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 		'password' => $password ?: $password = bcrypt('secret'),
 		'remember_token' => str_random(10),
 	];
+
+	return $user;
+
 });
