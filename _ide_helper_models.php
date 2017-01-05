@@ -12,8 +12,20 @@ namespace App{
 /**
  * App\Invoice
  *
+ * @property int $id
+ * @property string $invoice_number
+ * @property int $subscription_id
+ * @property int $status
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  * @property-read \App\InvoiceStatus $invoice_status
  * @property-read \App\Subscription $subscription
+ * @method static \Illuminate\Database\Query\Builder|\App\Invoice whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Invoice whereInvoiceNumber($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Invoice whereSubscriptionId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Invoice whereStatus($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Invoice whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Invoice whereUpdatedAt($value)
  */
 	class Invoice extends \Eloquent {}
 }
@@ -22,8 +34,24 @@ namespace App{
 /**
  * App\Article
  *
+ * @property int $id
+ * @property string $slug
+ * @property string $title
+ * @property string $body
+ * @property string $status
+ * @property int $user_id
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  * @property-read \App\User $user
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Comment[] $comments
+ * @method static \Illuminate\Database\Query\Builder|\App\Article whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Article whereSlug($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Article whereTitle($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Article whereBody($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Article whereStatus($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Article whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Article whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Article whereUpdatedAt($value)
  */
 	class Article extends \Eloquent {}
 }
@@ -32,8 +60,20 @@ namespace App{
 /**
  * App\Comment
  *
+ * @property int $id
+ * @property string $body
+ * @property int $article_id
+ * @property int $user_id
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  * @property-read \App\User $user
  * @property-read \App\Article $article
+ * @method static \Illuminate\Database\Query\Builder|\App\Comment whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Comment whereBody($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Comment whereArticleId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Comment whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Comment whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Comment whereUpdatedAt($value)
  */
 	class Comment extends \Eloquent {}
 }
@@ -224,8 +264,36 @@ namespace App{
 /**
  * App\BoatLevel
  *
+ * @property int $id
+ * @property int $user_id
+ * @property int $level
+ * @property string $licence
+ * @property string $instructor
+ * @property string $origin
+ * @property string $origin_number
+ * @property string $date
+ * @property bool $vhf_licence
+ * @property string $vhf_licence_number
+ * @property string $vhf_date
+ * @property bool $archive
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  * @property-read \App\User $user
  * @property-read \App\BoatLabel $label
+ * @method static \Illuminate\Database\Query\Builder|\App\BoatLevel whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\BoatLevel whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\BoatLevel whereLevel($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\BoatLevel whereLicence($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\BoatLevel whereInstructor($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\BoatLevel whereOrigin($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\BoatLevel whereOriginNumber($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\BoatLevel whereDate($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\BoatLevel whereVhfLicence($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\BoatLevel whereVhfLicenceNumber($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\BoatLevel whereVhfDate($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\BoatLevel whereArchive($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\BoatLevel whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\BoatLevel whereUpdatedAt($value)
  */
 	class BoatLevel extends \Eloquent {}
 }
@@ -234,8 +302,30 @@ namespace App{
 /**
  * App\DiveLevel
  *
+ * @property int $id
+ * @property int $user_id
+ * @property int $level
+ * @property string $licence
+ * @property string $instructor
+ * @property string $origin
+ * @property string $origin_number
+ * @property string $date
+ * @property bool $archive
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  * @property-read \App\User $user
  * @property-read \App\DiveLabel $label
+ * @method static \Illuminate\Database\Query\Builder|\App\DiveLevel whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\DiveLevel whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\DiveLevel whereLevel($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\DiveLevel whereLicence($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\DiveLevel whereInstructor($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\DiveLevel whereOrigin($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\DiveLevel whereOriginNumber($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\DiveLevel whereDate($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\DiveLevel whereArchive($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\DiveLevel whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\DiveLevel whereUpdatedAt($value)
  */
 	class DiveLevel extends \Eloquent {}
 }
@@ -244,10 +334,48 @@ namespace App{
 /**
  * App\Membership
  *
+ * @property int $id
+ * @property int $user_id
+ * @property string $licence
+ * @property int $asac_id
+ * @property \Carbon\Carbon $date
+ * @property int $origin_id
+ * @property bool $magazine
+ * @property bool $tank
+ * @property bool $regulator
+ * @property bool $supervisor
+ * @property bool $pool_lannion
+ * @property bool $free_pool
+ * @property bool $pool_trestel
+ * @property bool $local_access
+ * @property int $insurance_id
+ * @property string $certificat
+ * @property \Carbon\Carbon $certificat_date
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  * @property-read \App\User $user
  * @property-read \App\MembershipOrigin $origin
  * @property-read \App\InsuranceLabel $insurance
  * @property-read \App\AsacLabel $asac
+ * @method static \Illuminate\Database\Query\Builder|\App\Membership whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Membership whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Membership whereLicence($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Membership whereAsacId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Membership whereDate($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Membership whereOriginId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Membership whereMagazine($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Membership whereTank($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Membership whereRegulator($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Membership whereSupervisor($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Membership wherePoolLannion($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Membership whereFreePool($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Membership wherePoolTrestel($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Membership whereLocalAccess($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Membership whereInsuranceId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Membership whereCertificat($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Membership whereCertificatDate($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Membership whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Membership whereUpdatedAt($value)
  */
 	class Membership extends \Eloquent {}
 }
@@ -283,7 +411,19 @@ namespace App{
 /**
  * App\TivLevel
  *
+ * @property int $id
+ * @property int $user_id
+ * @property string $licence
+ * @property string $date
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  * @property-read \App\User $user
+ * @method static \Illuminate\Database\Query\Builder|\App\TivLevel whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\TivLevel whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\TivLevel whereLicence($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\TivLevel whereDate($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\TivLevel whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\TivLevel whereUpdatedAt($value)
  */
 	class TivLevel extends \Eloquent {}
 }
