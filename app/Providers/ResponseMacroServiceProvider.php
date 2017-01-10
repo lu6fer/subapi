@@ -11,14 +11,20 @@ class ResponseMacroServiceProvider extends ServiceProvider
             return Response::json([
                 'errors'  => false,
                 'data' => $data,
-            ]);
+            ])
+            ->header('Access-Control-Allow-Origin', '*')
+            ->header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE')
+            ->header('Access-Control-Allow-Headers', 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type');
         });
 
         Response::macro('error', function ($message, $status = 400) {
             return Response::json([
                 'errors'  => true,
                 'message' => $message,
-            ], $status);
+            ], $status)
+            ->header('Access-Control-Allow-Origin', '*')
+            ->header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE')
+            ->header('Access-Control-Allow-Headers', 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type');
         });
     }
 }

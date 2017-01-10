@@ -18,8 +18,7 @@ use Illuminate\Http\Request;
 })->middleware('auth:api');*/
 
 Route::group([
-	'prefix' => '/v1',
-	'middleware' => 'cors'
+	'prefix' => '/v1'
 ], function(){
 	/*
 	|--------------------------------------------------------------------------
