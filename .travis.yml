@@ -10,7 +10,7 @@ before_script:
   - composer self-update
   - composer install --no-interaction
   - php artisan key:generate  
-  - php artisan migrate --seed
+  - ./migrate-database.sh
 
 script:
 - vendor/bin/phpunit
