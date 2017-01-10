@@ -11,7 +11,8 @@
         "tymon/jwt-auth": "0.5.*",
         "watson/validating": "^3.0",
         "caouecs/laravel-lang": "~3.0",
-        "propaganistas/laravel-phone": "^2.8"
+        "propaganistas/laravel-phone": "^2.8",
+        "barryvdh/laravel-cors": "^0.8.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

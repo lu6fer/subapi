@@ -168,7 +168,8 @@ return [
          */
 
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
-	    Propaganistas\LaravelPhone\LaravelPhoneServiceProvider::class,
+        Propaganistas\LaravelPhone\LaravelPhoneServiceProvider::class,
+	Barryvdh\Cors\ServiceProvider::class,
 
         /*
          * Application Service Providers...
