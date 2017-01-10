@@ -32,4 +32,10 @@ class UserObserver
 		$user->slug = Str::slug($user->first_name.' '.$user->name);
 		$user->password = bcrypt($password);
 	}
+
+	public function validated(User $user, $status) {
+		if ($status == 'failed') {
+			Log::info($user);
+		}
+	}
 }
