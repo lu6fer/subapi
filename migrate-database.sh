@@ -1,8 +1,9 @@
 #!/bin/bash
 set -e 
-
+echo "PWD"
+pwd
+echo '-------------------------------------------------'
 echo "Migrating database 'php artisan migrate --force'..."
-#php --version
-#php /opt/app-root/src/composer.phar install
-php artisan migrate
+php artisan migrate --env="openshift"
+echo "Application seed"
 php artisan db:seed
