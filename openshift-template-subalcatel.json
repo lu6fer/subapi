@@ -2,7 +2,7 @@
   "kind": "Template",
   "apiVersion": "v1",
   "metadata": {
-    "name": "subalcatel",
+    "name": "subapi",
     "annotations": {
       "openshift.io/display-name": "Laravel + MySQL (Persistent)",
       "description": "An example Laravel application with a MySQL database. For more information about using this template, including OpenShift considerations, see https://github.com/luciddreamz/laravel-ex/blob/master/readme.md.",
@@ -10,15 +10,16 @@
       "iconClass": "icon-laravel"
     }
   },
-  "message": "The following service(s) have been created in your project: subalcatel, ${DATABASE_SERVICE_NAME}.\n\nFor more information about using this template, including OpenShift considerations, see https://github.com/luciddreamz/laravel-ex/blob/master/readme.md.",
+  "message": "The following service(s) have been created in your project: subapi, ${DATABASE_SERVICE_NAME}.\n\nFor more information about using this template, including OpenShift considerations, see https://github.com/luciddreamz/laravel-ex/blob/master/readme.md.",
   "labels": {
-    "template": "subalcatel"
+    "template": "subapi"
   },
-  "objects": [{
+  "objects": [
+    {
     "kind": "Service",
     "apiVersion": "v1",
     "metadata": {
-      "name": "subalcatel",
+      "name": "subapi",
       "annotations": {
         "description": "Exposes and load balances the application pods",
         "service.alpha.openshift.io/dependencies": "[{\"name\": \"${DATABASE_SERVICE_NAME}\", \"kind\": \"Service\"}]"
@@ -31,36 +32,39 @@
         "targetPort": 8080
       }],
       "selector": {
-        "name": "subalcatel"
+        "name": "subapi"
       }
     }
-  }, {
+  },
+    {
     "kind": "Route",
     "apiVersion": "v1",
     "metadata": {
-      "name": "subalcatel"
+      "name": "subapi"
     },
     "spec": {
       "host": "${APPLICATION_DOMAIN}",
       "to": {
         "kind": "Service",
-        "name": "subalcatel"
+        "name": "subapi"
       }
     }
-  }, {
+  },
+    {
     "kind": "ImageStream",
     "apiVersion": "v1",
     "metadata": {
-      "name": "subalcatel",
+      "name": "subapi",
       "annotations": {
         "description": "Keeps track of changes in the application image"
       }
     }
-  }, {
+  },
+    {
     "kind": "BuildConfig",
     "apiVersion": "v1",
     "metadata": {
-      "name": "subalcatel",
+      "name": "subapi",
       "annotations": {
         "description": "Defines how to build the application"
       }
@@ -88,7 +92,7 @@
       "output": {
         "to": {
           "kind": "ImageStreamTag",
-          "name": "subalcatel:latest"
+          "name": "subapi:latest"
         }
       },
       "triggers": [{
@@ -102,7 +106,8 @@
         }
       }]
     }
-  }, {
+  },
+    {
     "kind": "PersistentVolumeClaim",
     "apiVersion": "v1",
     "metadata": {
@@ -118,11 +123,12 @@
         }
       }
     }
-  }, {
+  },
+    {
     "kind": "DeploymentConfig",
     "apiVersion": "v1",
     "metadata": {
-      "name": "subalcatel",
+      "name": "subapi",
       "annotations": {
         "description": "Defines how to deploy the application server"
       }
@@ -137,7 +143,7 @@
               "command": [
                 "/bin/sh", "migrate-database.sh"
               ],
-              "containerName": "subalcatel"
+              "containerName": "subapi"
             }
           }
         }
@@ -147,11 +153,11 @@
         "imageChangeParams": {
           "automatic": true,
           "containerNames": [
-            "subalcatel"
+            "subapi"
           ],
           "from": {
             "kind": "ImageStreamTag",
-            "name": "subalcatel:latest"
+            "name": "subapi:latest"
           }
         }
       }, {
@@ -159,19 +165,19 @@
       }],
       "replicas": 1,
       "selector": {
-        "name": "subalcatel"
+        "name": "subapi"
       },
       "template": {
         "metadata": {
-          "name": "subalcatel",
+          "name": "subapi",
           "labels": {
-            "name": "subalcatel"
+            "name": "subapi"
           }
         },
         "spec": {
           "containers": [{
-            "name": "subalcatel",
-            "image": "subalcatel",
+            "name": "subapi",
+            "image": "subapi",
             "ports": [{
               "containerPort": 8080
             }],
@@ -179,7 +185,7 @@
               "timeoutSeconds": 3,
               "initialDelaySeconds": 3,
               "httpGet": {
-                "path": "/health.php",
+                "path": "/api/v1/status",
                 "port": 8080
               }
             },
@@ -234,7 +240,8 @@
         }
       }
     }
-  }, {
+  },
+    {
     "kind": "Service",
     "apiVersion": "v1",
     "metadata": {
@@ -253,7 +260,8 @@
         "name": "${DATABASE_SERVICE_NAME}"
       }
     }
-  }, {
+  },
+    {
     "kind": "DeploymentConfig",
     "apiVersion": "v1",
     "metadata": {
@@ -343,7 +351,8 @@
         }
       }
     }
-  }],
+  }
+  ],
   "parameters": [{
     "name": "SOURCE_REPOSITORY_URL",
     "displayName": "Git Repository URL",
@@ -419,7 +428,7 @@
   }, {
     "name": "DATABASE_SERVICE_NAME",
     "displayName": "Database Service Name",
-    "value": "mysql",
+    "value": "mysql-subapi",
     "required": true
   }, {
     "name": "DATABASE_ENGINE",
